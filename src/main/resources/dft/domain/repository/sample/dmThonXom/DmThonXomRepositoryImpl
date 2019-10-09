@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dft.domain.repository.DmThonXomRepository">
+
+
+    <resultMap id="thonXomResultMap" type="DM_THON_XOM">
+        <id property="id" column="ID" />
+        <result property="ma" column="MA" />
+        <result property="ten" column="TEN" />
+        <result property="maTinh" column="MA_TINH" />
+        <result property="maHuyen" column="MA_HUYEN" />
+        <result property="maXa" column="MA_XA" />
+        <result property="trangThai" column="TRANG_THAI" />
+    </resultMap>
+
+    <select id="findAllThonXom" resultMap="thonXomResultMap">
+    <![CDATA[
+        SELECT
+            ID,
+            MA,
+            TEN,
+            MA_TINH,
+            MA_HUYEN,
+            MA_XA,
+            TRANG_THAI
+        FROM
+            DM_THON_XOM
+    ]]>
+    </select>
+
+    <select id="findOneTonXom" resultMap="thonXomResultMap" parameterType="long">
+    <![CDATA[
+        SELECT
+            ID,
+            MA,
+            TEN,
+            MA_TINH,
+            MA_HUYEN,
+            MA_XA,
+            TRANG_THAI
+        FROM
+            DM_THON_XOM
+        WHERE
+            ID = #{id}
+    ]]>
+    </select>
+
+    <insert id="createThonXom" useGeneratedKeys="true" parameterType="DM_THON_XOM" keyProperty="id">
+    <![CDATA[
+        INSERT INTO DM_THON_XOM
+        (
+            MA,
+            TEN,
+            MA_TINH,
+            MA_HUYEN,
+            MA_XA,
+            TRANG_THAI
+        )
+        VALUES
+        (
+            #{ma},
+            #{ten},
+            #{maTinh},
+            #{maHuyen},
+            #{maXa},
+            #{trangThai}
+        )
+    ]]>
+    </insert>
+
+    <update id="updateThonXom" parameterType="DM_THON_XOM">
+    <![CDATA[
+        UPDATE
+            DM_THON_XOM
+        SET
+            MA = #{ma},
+            TEN = #{ten},
+            MA_TINH = #{maTinh},
+            MA_HUYEN = #{maHuyen},
+            MA_XA = #{maXa},
+            TRANG_THAI = #{trangThai},
+        WHERE
+            ID = #{id}
+    ]]>
+    </update>
+
+    <delete id="deleteThonXom" parameterType="long">
+    <![CDATA[
+        DELETE FROM DM_THON_XOM
+        WHERE
+            ID = #{id}
+    ]]>
+    </delete>
+
+</mapper>
