@@ -18,13 +18,12 @@
                     <th>Thôn xóm</th>
                 </tr>
 
-                <c:forEach items="${lstTtCaNhan}" var="t" varStatus="i">
+                <c:forEach items="${lstTtCaNhanDTOs}" var="t" varStatus="i">
                     <tr>
                         <td>${i.index+1}</td>
                         <td>${t.hoTen}</td>
-                        <td>${t.gioiTinh.ten}</td>
-<%--                        <td>${t.gioiTinh.id == 1 ? t.ngaySinh : ''}</td>--%>
-<%--                        <td>${t.gioiTinh.id == 2 ? '' : t.ngaySinh}</td>--%>
+                        <td>${t.gioiTinhID == 1 ? t.ngaySinh : ''}</td>
+                        <td>${t.gioiTinhID == 2 ? t.ngaySinh : ''}</td>
 <%--                        <td>${t.ttTinh.ten}</td>--%>
 <%--                        <td>${t.ttHuyen.ten}</td>--%>
 <%--                        <td>${t.ttXa.ten}</td>--%>

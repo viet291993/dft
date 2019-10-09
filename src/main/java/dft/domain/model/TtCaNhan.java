@@ -3,9 +3,11 @@ package dft.domain.model;
 import java.util.Date;
 
 public class TtCaNhan {
+    private Long id;
+    private String maYTeCaNhan;
     private String hoTen;
     private DMGioiTinh gioiTinh;
-//    private Integer ngaySinh;
+    private Integer ngaySinh;
 //    private DmTinhTP ttTinh;
 //    private DmQuanHuyen ttHuyen;
 //    private DmXaPhuong ttXa;
@@ -15,8 +17,23 @@ public class TtCaNhan {
 //    private DmXaPhuong htXa;
 //    private DmThonXom htThonXom;
 //    private boolean trangThai;
-
     //<editor-fold defaultstate="collapsed" desc="set và get">
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMaYTeCaNhan() {
+        return maYTeCaNhan;
+    }
+
+    public void setMaYTeCaNhan(String maYTeCaNhan) {
+        this.maYTeCaNhan = maYTeCaNhan;
+    }
 
     public String getHoTen() {
         return hoTen;
@@ -34,13 +51,13 @@ public class TtCaNhan {
         this.gioiTinh = gioiTinh;
     }
 
-//    public Integer getNgaySinh() {
-//        return ngaySinh;
-//    }
-//
-//    public void setNgaySinh(Integer ngaySinh) {
-//        this.ngaySinh = ngaySinh;
-//    }
+    public Integer getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Integer ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
 //
 //    public DmTinhTP getTtTinh() {
 //        return ttTinh;
