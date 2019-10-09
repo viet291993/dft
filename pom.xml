@@ -126,11 +126,11 @@
             <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
             <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.terasoluna.gfw</groupId>
             <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
@@ -176,18 +176,17 @@
         <!-- == End Tomcat == -->
 
         <!-- == Begin Database == -->
-<!--        <dependency> -->
-<!--            <groupId>org.postgresql</groupId> -->
-<!--            <artifactId>postgresql</artifactId> -->
-<!--            <version>${postgresql.version}</version> -->
-<!--            <scope>runtime</scope> -->
-<!--        </dependency> -->
-<!--        <dependency> -->
-<!--            <groupId>com.oracle.jdbc</groupId> -->
-<!--            <artifactId>ojdbc7</artifactId> -->
-<!--            <version>${ojdbc.version}</version> -->
-<!--            <scope>runtime</scope> -->
-<!--        </dependency> -->
+        <!--        <dependency> -->
+        <!--            <groupId>org.postgresql</groupId> -->
+        <!--            <artifactId>postgresql</artifactId> -->
+        <!--            <version>${postgresql.version}</version> -->
+        <!--            <scope>runtime</scope> -->
+        <!--        </dependency> -->
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>7</version>
+        </dependency>
         <!-- == End Database == -->
 
         <!-- == Begin Unit Test == -->
