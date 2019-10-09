@@ -8,7 +8,7 @@
 <body>
     <div id="wrapper">
         <h1>Hello world!</h1>
-        <p>The time on the server is ${serverTime}.</p>
+        <p>The times on the server is ${serverTime}.</p>
     </div>
 </body>
 </html>
