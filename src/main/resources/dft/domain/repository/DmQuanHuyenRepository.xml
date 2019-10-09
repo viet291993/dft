@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dft.domain.repository.DmQuanHuyenRepository">
+
+    <resultMap id="dmQuanHuyen" type="DmQuanHuyen">
+        <id property="id" column="Q_id" />
+        <result property="ma" column="Q_ma" />
+        <result property="ten" column="Q_ten" />
+        <result property="moTa" column="Q_maTo" />
+        <result property="maTinh" column="Q_maTinh" />
+        <result property="cap" column="Q_cap" />
+        <result property="trangThai" column="Q_trangThai" />
+    </resultMap>
+
+    <sql id="dmQuanHuyen_Select">
+            ID Q_id,MA Q_ma,TEN Q_ten,MO_TA Q_moTa,MA_TINH Q_maTinh, CAP Q_cap, TRANG_THAI Q_trangThai
+     </sql>
+
+    <select id="findOne" parameterType="integer" resultMap="dmQuanHuyen">
+    <![CDATA[
+        SELECT
+            <include refid="dmQuanHuyen_Select">
+        FROM
+           DM_QUAN_HUYEN
+        WHERE
+            Q_id = #{DmQuanHuyenId}
+    ]]>
+    </select>
+
+    <select id="findAll" resultMap="dmQuanHuyen">
+    <![CDATA[
+        SELECT
+            ID as Q_id, MA AS Q_ma, TEN AS Q_ten, MO_TA AS Q_moTa, MA_TINH AS Q_maTinh, CAP AS Q_cap, TRANG_THAI AS Q_trangThai
+        FROM
+            DM_QUAN_HUYEN
+        WHERE
+            rownum < 5
+    ]]>
+    </select>
+
+    <insert id="create" parameterType="dmQuanHuyen">
+    <![CDATA[
+        INSERT INTO DM_QUAN_HUYEN
+        (
+           <include refid="dmQuanHuyen_Select">
+        ) 
+        VALUES
+        (
+            #{dmQuanHuyenId},
+            #{dmQuanHuyenMa},
+            #{dmQuanHuyenTen},
+            #{dmQuanHuyenMota},
+            #{dmQuanHuyenMaTinh},
+            #{dmQuanHuyenCap},
+            #{dmQuanHuyenTrangThai}
+        )
+    ]]>
+    </insert>
+
+    <update id="updateById" parameterType="dmQuanHuyen">
+    <![CDATA[
+        UPDATE
+            DM_QUAN_HUYEN
+        SET
+          MA =  #{dmQuanHuyenMa},
+          TEN =  #{dmQuanHuyenTen},
+          MO_TA = #{dmQuanHuyenMota},
+          MA_TINH = #{dmQuanHuyenMaTinh},
+          CAP  #{dmQuanHuyenCap},
+          TRANG_THAI  #{dmQuanHuyenTrangThai}
+        WHERE
+            ID = #{dmQuanHuyenId}
+    ]]>
+    </update>
+
+    <delete id="deleteById" parameterType="dmQuanHuyen">
+    <![CDATA[
+        DELETE FROM DM_QUAN_HUYEN
+        WHERE
+            ID = #{dmQuanHuyenId}
+    ]]>
+    </delete>
+
+    <!--<select id="countByFinished" parameterType="boolean" resultType="long">
+    <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            todo
+        WHERE
+            finished = #{finished}
+    ]]>
+    </select>
+
+    <select id="exists" parameterType="string" resultType="long">
+    <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            todo
+        WHERE
+            todo_id = #{todoId}
+    ]]>
+    </select>-->
+
+
+
+</mapper>
