@@ -18,4 +18,6 @@ public interface TtCaNhanRepository {
 
     @Select("select id, ten from dm_gioi_tinh where id = #{id}")
     public DMGioiTinh findAllGioiTinh();
+
+
 }

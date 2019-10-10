@@ -3,13 +3,17 @@ package dft.app.welcome.ttCaNhanController;
 import dft.domain.dto.ttCaNhanDTO.TtCaNhanDTO;
 import dft.domain.model.TtCaNhan;
 import dft.domain.service.TtCaNhanService.TtCaNhanService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.inject.Inject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -32,9 +36,7 @@ public class TtCaNhanController {
         for (TtCaNhan t : lstTtCaNhan) {
             // đưa dữ liệu vào đối tượng DTO
             TtCaNhanDTO ttCaNhanDTO = new TtCaNhanDTO();
-            ttCaNhanDTO.setId(t.getId());
-            ttCaNhanDTO.setMaYTeCaNhan(t.getMaYTeCaNhan());
-            ttCaNhanDTO.setHoTen(t.getHoTen());
+            BeanUtils.copyProperties(t, ttCaNhanDTO, "ngaySinh");
             ttCaNhanDTO.setGioiTinhID(t.getGioiTinh().getId());
             ttCaNhanDTO.setNgaySinh(chuyenNgaySinhThanhString(t.getNgaySinh()));
 
@@ -47,19 +49,17 @@ public class TtCaNhanController {
 
     // chuyển ngày sinh từ Integer thành string
     private String chuyenNgaySinhThanhString(Integer ngaySinhOld) {
-        // cắt ngày sinh thành năm, tháng, ngày
-        StringBuilder ngaySinh = new StringBuilder(String.valueOf(ngaySinhOld));
-        String nam = ngaySinh.substring(0, 4);
-        String thang = ngaySinh.substring(4, 6);
-        String ngay = ngaySinh.substring(6, 8);
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            Date ngaySinhNew = format.parse(ngaySinhOld.toString());
+            SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 
-        // nối thành chuỗi dd-MM-yyyy
-        StringBuilder ngaySinhNew = new StringBuilder(ngay);
-        ngaySinhNew.append("-");
-        ngaySinhNew.append(thang);
-        ngaySinhNew.append("-");
-        ngaySinhNew.append(nam);
+            return format2.format(ngaySinhNew);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        return ngaySinhNew.toString();
+        return null;
     }
 }
