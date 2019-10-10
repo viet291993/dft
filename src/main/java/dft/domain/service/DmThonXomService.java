@@ -11,7 +11,7 @@ public interface DmThonXomService {
 
     void create(DmThonXom dmThonXom);
 
-    DmThonXom updateById(int id);
+    void update(DmThonXom dmThonXom);
 
     void deleteById(int id);
 }

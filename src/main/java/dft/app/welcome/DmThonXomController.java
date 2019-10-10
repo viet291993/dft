@@ -5,6 +5,7 @@ import dft.domain.service.DmThonXomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,14 +17,25 @@ public class DmThonXomController {
     private DmThonXomService dmThonXomService;
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public String createDmThonXom(Model model){
+    public String createDmThonXom(Model model) {
         model.addAttribute("DmThonXoms", dmThonXomService.findAll());
         return "DmThonXom/DmThonXomList";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String deleteDmThonXomById(@PathVariable("id")int dmThonXomId,Model model){
+    public String deleteDmThonXomById(@PathVariable("id") int dmThonXomId, Model model) {
         dmThonXomService.deleteById(dmThonXomId);
-        return  "redirect:/dm-thonxom/list";
+        return "redirect:/dm-thonxom/list";
+    }
+
+    @RequestMapping(value = "edit/{id}")
+    public String editDmThonXomById(@PathVariable("id") int dmThonXomId,Model model){
+        model.addAttribute("dmThonXom",dmThonXomService.findById(dmThonXomId));
+        return "DmThonXom/DmThonXomEdit";
+    }
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String update(@ModelAttribute("dmThonXom") DmThonXom dmThonXom, Model model){
+        dmThonXomService.update(dmThonXom);
+        return "redirect:/dm-thonxom/list";
     }
 }

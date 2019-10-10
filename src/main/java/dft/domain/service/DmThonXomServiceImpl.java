@@ -30,9 +30,10 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     }
 
     @Override
-    public DmThonXom updateById(int id) {
-        return dmThonXomRepository.updateById(id);
+    public void update(DmThonXom dmThonXom) {
+        dmThonXomRepository.update(dmThonXom);
     }
+
 
     @Override
     public void deleteById(int id) {
