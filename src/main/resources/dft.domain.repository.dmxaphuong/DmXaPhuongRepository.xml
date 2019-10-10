@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dft.domain.repository.dmxaphuong.DmXaPhuongRepository">
+
+    <resultMap id="DmXaPhuongResultMap" type="DmXaPhuong">
+        <id property="id" column="ID" />
+        <result property="ma" column="MA" />
+        <result property="ten" column="TEN" />
+        <result property="moTa" column="MO_TA" />
+        <result property="maTinh" column="MA_TINH" />
+        <result property="maHuyen" column="MA_HUYEN" />
+        <result property="cap" column="CAP" />
+        <result property="trangThai" column="TRANG_THAI" />
+        <result property="ngayTao" column="NGAY_TAO" />
+        <result property="nguoiTaoId" column="NGUOI_TAO_ID" />
+        <result property="ngaySua" column="NGAY_SUA" />
+        <result property="nguoiSuaId" column="NGUOI_SUA_ID" />
+    </resultMap>
+
+    <!--<select id="findOne" parameterType="string" resultMap="todoResultMap">
+    <![CDATA[
+        SELECT
+            todo_id,
+            todo_title,
+            finished,
+            created_at
+        FROM
+            todo
+        WHERE
+            todo_id = #{todoId}
+    ]]>
+    </select>
+
+    <select id="findAll" resultMap="todoResultMap">
+    <![CDATA[
+        SELECT
+            todo_id,
+            todo_title,
+            finished,
+            created_at
+        FROM
+            todo
+    ]]>
+    </select>
+
+    <insert id="create" parameterType="Todo">
+    <![CDATA[
+        INSERT INTO todo
+        (
+            todo_id,
+            todo_title,
+            finished,
+            created_at
+        )
+        VALUES
+        (
+            #{todoId},
+            #{todoTitle},
+            #{finished},
+            #{createdAt}
+        )
+    ]]>
+    </insert>
+
+    <update id="update" parameterType="Todo">
+    <![CDATA[
+        UPDATE
+            todo
+        SET
+            todo_title = #{todoTitle},
+            finished = #{finished},
+            created_at = #{createdAt}
+        WHERE
+            todo_id = #{todoId}
+    ]]>
+    </update>
+
+    <delete id="delete" parameterType="Todo">
+    <![CDATA[
+        DELETE FROM todo
+        WHERE
+            todo_id = #{todoId}
+    ]]>
+    </delete>
+
+    <select id="countByFinished" parameterType="boolean" resultType="long">
+    <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            todo
+        WHERE
+            finished = #{finished}
+    ]]>
+    </select>
+
+    <select id="exists" parameterType="string" resultType="long">
+    <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            todo
+        WHERE
+            todo_id = #{todoId}
+    ]]>
+    </select>
+    -->
+
+</mapper>
