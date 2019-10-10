@@ -21,9 +21,9 @@ public class DmThonXomController {
         return "DmThonXom/DmThonXomList";
     }
 
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-    public String deleteDmThonXomById(@PathVariable("id")int id,Model model){
-        dmThonXomService.deleteById(id);
-        return "redirect:/dm-thonxom/list";
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    public String deleteDmThonXomById(@PathVariable("id")int dmThonXomId,Model model){
+        dmThonXomService.deleteById(dmThonXomId);
+        return  "redirect:/dm-thonxom/list";
     }
 }

@@ -28,22 +28,30 @@
      </sql>
 
     <select id="findAll" resultMap="dmThonXom">
-    <![CDATA[
+        <![CDATA[
+                 SELECT
+                        ID thon_id,
+                        MA thon_ma,
+                        TEN thon_ten,
+                        MO_TA thon_moTaThon,
+                        MA_TINH thon_maTinh,
+                        MA_HUYEN thon_maHuyen,
+                        MA_XA thon_maXa,
+                        TRANG_THAI thon_trangThai
+                 FROM
+                        DM_THON_XOM
+                WHERE
+                        rownum <10
 
-            SELECT
-                    ID thon_id,
-                    MA thon_ma,
-                    TEN thon_ten,
-                    MO_TA thon_moTaThon,
-                    MA_TINH thon_maTinh,
-                    MA_HUYEN thon_maHuyen,
-                    MA_XA thon_maXa,
-                    TRANG_THAI thon_trangThai
-            FROM
-                   DM_THON_XOM
-            WHERE
-                rownum <10
 
-        ]]>
+            ]]>
     </select>
+
+    <delete id="deleteById" parameterType="DmThonXom">
+        <![CDATA[
+            DELETE FROM DM_THON_XOM
+            WHERE
+                ID = #{dmThonXomId}
+        ]]>
+    </delete>
 </mapper>
