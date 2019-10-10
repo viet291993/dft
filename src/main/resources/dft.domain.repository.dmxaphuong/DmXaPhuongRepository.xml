@@ -22,7 +22,7 @@
 
     <!--<select id="findOne" parameterType="string" resultMap="todoResultMap">
     <![CDATA[
-        SELECT
+        SELECT  cc
             todo_id,
             todo_title,
             finished,
