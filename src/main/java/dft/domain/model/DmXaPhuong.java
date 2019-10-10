@@ -77,7 +77,7 @@ public class DmXaPhuong implements Serializable {
 
     public Integer getTrangThai() {
         return trangThai;
-    }
+    }kbnkll
 
     public void setTrangThai(Integer trangThai) {
         this.trangThai = trangThai;
