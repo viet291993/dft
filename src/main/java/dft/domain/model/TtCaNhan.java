@@ -1,7 +1,5 @@
 package dft.domain.model;
 
-import java.util.Date;
-
 public class TtCaNhan {
     private Long id;
     private String maYTeCaNhan;
