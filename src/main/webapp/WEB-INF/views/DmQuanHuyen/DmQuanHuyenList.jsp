@@ -20,16 +20,21 @@
             <th>Mã tỉnh</th>
             <th>Cấp</th>
             <th>Trạng thái</th>
+            <th></th>
         </tr>
-        <c:forEach items="listDmQuanHuyen" var="QuanHuyen">
+        <c:forEach items="${listDmQuanHuyen}" var="QH">
             <tr>
-                <td>${QuanHuyen.id}</td>
-                <td>${QuanHuyen.ma}</td>
-                <td>${QuanHuyen.ten}</td>
-                <td>${QuanHuyen.moTa}</td>
-                <td>${QuanHuyen.maTinh}</td>
-                <td>${QuanHuyen.cap}</td>
-                <td>${QuanHuyen.trangThai}</td>
+                <td>${QH.id}</td>
+                <td>${QH.ma}</td>
+                <td>${QH.ten}</td>
+                <td>${QH.moTa}</td>
+                <td>${QH.maTinh}</td>
+                <td>${QH.cap}</td>
+                <td>${QH.trangThai}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/QuanHuyen/Sua/${QH.id}">Sửa</a>
+                    <a href="${pageContext.request.contextPath}/QuanHuyen/Xoa/${QH.id}">Xóa</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
