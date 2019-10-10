@@ -47,6 +47,29 @@
             ]]>
     </select>
 
+    <select id="findById" parameterType="DmThonXom" resultMap="dmThonXom">
+        <![CDATA[
+            SELECT
+                TEN thon_ten,
+                MO_TA thon_moTaThon,
+                TRANG_THAI thon_trangThai
+            FROM DM_THON_XOM
+            WHERE ID= #{dmThonXomId}
+        ]]>
+    </select>
+
+    <update id="update" parameterType="DmThonXom" >
+        <![CDATA[
+            UPDATE DM_THON_XOM
+            SET
+                TEN = #{tenThon},
+                MO_TA = #{moTaThon},
+                TRANG_THAI = #{trangThai}
+            WHERE
+                ID = #{id}
+        ]]>
+    </update>
+    
     <delete id="deleteById" parameterType="DmThonXom">
         <![CDATA[
             DELETE FROM DM_THON_XOM

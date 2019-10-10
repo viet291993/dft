@@ -80,7 +80,8 @@
     <![CDATA[
         DELETE FROM DM_QUAN_HUYEN
         WHERE
-            ID = #{dmQuanHuyenId}
+            ID = #{dmQuanHuyenId},
+
     ]]>
     </delete>
 
