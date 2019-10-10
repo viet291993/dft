@@ -17,6 +17,11 @@
 
 <nav class="navbar" style="background: #e6e2eb">
     <a class="navbar-brand" href="#">Trang chủ</a>
+    <a class="navbar-brand" href="#">Tinh</a>
+    <a class="navbar-brand" href="#">Quận huyện</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/dmxaphuong">Xã phường</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/dm-thonxom/list">Thôn xóm</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/ttCaNhan/">Thông tin cá nhân</a>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
