@@ -7,10 +7,14 @@ import java.util.List;
 
 public interface TtCaNhanService {
     List<TtCaNhan> findAllTtCaNhan();
-    List<DmQuanHuyen> findAllQuanHuyen();
     List<DmQuanHuyen> findAllTinh();
+    List<DmQuanHuyen> findAllQuanHuyen();
     List<DmQuanHuyen> findAllThonXom();
+    TtCaNhan findOneById(Long id);
+    int findOneByMaYTeCaNhan(String maYTeCaNhan);
+    String findMaYTeCaNhanById(Long id);
     void insert(TtCaNhan ttCaNhan);
-    int findOne(String maYTeCaNhan);
     void update(TtCaNhan ttCaNhan);
+    void delete(Long id);
+
 }

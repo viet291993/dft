@@ -55,6 +55,13 @@
 <%--                        <td>${t.ttHuyen.ten}</td>--%>
 <%--                        <td>${t.ttXa.ten}</td>--%>
 <%--                        <td>${t.ttThonXom.ten}</td>--%>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/" method="post">
+                                <input type="hidden" value="${t.id}" name="txtId">
+                                <button name="btnSua">Sửa</button> |
+                                <button name="btnXoassss">Xóa</button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
