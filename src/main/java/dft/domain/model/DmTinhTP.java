@@ -4,25 +4,21 @@ import java.io.Serializable;
 
 
 /**
- * A DmQuanHuyen.
+ * A DmTinhTP.
  */
-public class DmQuanHuyen implements Serializable {
+public class DmTinhTP implements Serializable {
     // id
     private int id;
     // Mã
     private String ma;
     // Tên
     private String ten;
-    // Mổ tả
-    private String moTa;
-    // Mã tỉnh
-    private String maTinh;
     // Cấp
     private String cap;
     // Trạng thái
     private int trangThai;
 
-    public DmQuanHuyen() {
+    public DmTinhTP() {
     }
 
     public int getId() {
@@ -49,22 +45,6 @@ public class DmQuanHuyen implements Serializable {
         this.ten = ten;
     }
 
-    public String getMoTa() {
-        return moTa;
-    }
-
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
-    }
-
-    public String getMaTinh() {
-        return maTinh;
-    }
-
-    public void setMaTinh(String maTinh) {
-        this.maTinh = maTinh;
-    }
-
     public String getCap() {
         return cap;
     }
@@ -83,12 +63,10 @@ public class DmQuanHuyen implements Serializable {
 
     @Override
     public String toString() {
-        return "DmQuanHuyen{" +
+        return "DmTinhTP{" +
                 "id=" + id +
                 ", ma='" + ma + '\'' +
                 ", ten='" + ten + '\'' +
-                ", moTa='" + moTa + '\'' +
-                ", maTinh='" + maTinh + '\'' +
                 ", cap='" + cap + '\'' +
                 ", trangThai=" + trangThai +
                 '}';
