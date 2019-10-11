@@ -21,10 +21,6 @@
                     <td>
                        <form:input path="tenThon"/>
                         <form:hidden path="id"/>
-                        <form:hidden path="maThon"/>
-                        <form:hidden path="maXa"/>
-                        <form:hidden path="maHuyen"/>
-                        <form:hidden path="maTinh"/>
                     </td>
                 </tr>
                 <tr>
