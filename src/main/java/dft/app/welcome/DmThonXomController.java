@@ -29,7 +29,7 @@ public class DmThonXomController {
     // Lây danh sach huyen, quan
     @ModelAttribute("dmQuanHuyen_List")
     public List<DmQuanHuyen> danhSachQuanHuyen() {
-        return dmQuanHuyenService.getAll();
+        return dmQuanHuyenService.findAll();
     }
 
     // Lay danh sach xa, phuong
