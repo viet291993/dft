@@ -7,7 +7,7 @@ public class TtCaNhan {
     private DMGioiTinh gioiTinh;
     private Integer ngaySinh;
 //    private DmTinhTP ttTinh;
-//    private DmQuanHuyen ttHuyen;
+    private DmQuanHuyen ttHuyen;
 //    private DmXaPhuong ttXa;
 //    private DmThonXom ttThonXom;
 //    private DmTinhTP htTinh;
@@ -15,6 +15,7 @@ public class TtCaNhan {
 //    private DmXaPhuong htXa;
 //    private DmThonXom htThonXom;
 //    private boolean trangThai;
+
     //<editor-fold defaultstate="collapsed" desc="set và get">
 
     public Long getId() {
@@ -65,13 +66,13 @@ public class TtCaNhan {
 //        this.ttTinh = ttTinh;
 //    }
 //
-//    public DmQuanHuyen getTtHuyen() {
-//        return ttHuyen;
-//    }
-//
-//    public void setTtHuyen(DmQuanHuyen ttHuyen) {
-//        this.ttHuyen = ttHuyen;
-//    }
+    public DmQuanHuyen getTtHuyen() {
+        return ttHuyen;
+    }
+
+    public void setTtHuyen(DmQuanHuyen ttHuyen) {
+        this.ttHuyen = ttHuyen;
+    }
 //
 //    public DmXaPhuong getTtXa() {
 //        return ttXa;
