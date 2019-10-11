@@ -29,20 +29,17 @@
 
     <select id="findAll" resultMap="dmThonXom">
         <![CDATA[
-                 SELECT
-                        ID thon_id,
-                        MA thon_ma,
-                        TEN thon_ten,
-                        MO_TA thon_moTaThon,
-                        MA_TINH thon_maTinh,
-                        MA_HUYEN thon_maHuyen,
-                        MA_XA thon_maXa,
-                        TRANG_THAI thon_trangThai
-                 FROM
-                        DM_THON_XOM
-                WHERE
-                        rownum <10
-
+            SELECT
+                  ID thon_id,
+                  MA thon_ma,
+                  TEN thon_ten,
+                  MO_TA thon_moTaThon,
+                  MA_TINH thon_maTinh,
+                  MA_HUYEN thon_maHuyen,
+                  MA_XA thon_maXa,
+                  TRANG_THAI thon_trangThai
+            FROM
+                  DM_THON_XOM
 
             ]]>
     </select>
@@ -50,6 +47,7 @@
     <select id="findById" parameterType="DmThonXom" resultMap="dmThonXom">
         <![CDATA[
             SELECT
+                ID thon_id,
                 TEN thon_ten,
                 MO_TA thon_moTaThon,
                 TRANG_THAI thon_trangThai
