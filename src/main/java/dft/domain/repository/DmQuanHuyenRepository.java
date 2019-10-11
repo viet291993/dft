@@ -8,13 +8,13 @@ import java.util.List;
 @Repository
 public interface DmQuanHuyenRepository {
 
-    List<DmQuanHuyen> getAll();
+    List<DmQuanHuyen> findAll();
 
-    Class findOne(int id);
+    DmQuanHuyen findOne(int id);
 
     void create(DmQuanHuyen dmQuanHuyen);
 
-    void updateById(DmQuanHuyen dmQuanHuyen);
+    void update(DmQuanHuyen dmQuanHuyen);
 
     void deleteById(int id);
 }
