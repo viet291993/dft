@@ -5,13 +5,13 @@ import dft.domain.model.DmQuanHuyen;
 import java.util.List;
 
 public interface DmQuanHuyenService {
-    List<DmQuanHuyen> getAll();
+    List<DmQuanHuyen> findAll();
 
-    Class findOne(int id);
+    DmQuanHuyen findOne(int id);
 
     boolean create(DmQuanHuyen dmQuanHuyen);
 
-    boolean updateById(DmQuanHuyen dmQuanHuyen);
+    boolean update(DmQuanHuyen dmQuanHuyen);
 
     boolean deleteById(int id);
 }

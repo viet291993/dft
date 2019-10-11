@@ -1,7 +1,7 @@
 package dft.domain.service;
 
-import dft.domain.model.DmQuanHuyen;
-import dft.domain.repository.DmQuanHuyenRepository;
+import dft.domain.model.DmTinhTP;
+import dft.domain.repository.DmTinhTPRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,18 +10,17 @@ import java.util.List;
 
 @Transactional
 @Service
-public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
+public class DmTinhTPServiceImpl implements DmTinhTPService {
 
     @Inject
-    DmQuanHuyenRepository dmQuanHuyenRepository;
+    DmTinhTPRepository dmTinhTPRepository;
 
-    // Lấy danh sách Quận Huyện
+    // Lấy danh sách Tỉnh TP
     @Override
-    public List<DmQuanHuyen> findAll() {
+    public List<DmTinhTP> findAll() {
         try {
-            return dmQuanHuyenRepository.findAll();
+            return dmTinhTPRepository.findAll();
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -29,62 +28,58 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
     /**
      * Lấy thông tin Quận Huyên theo id
      * @param id <id>
-     * @return DmQuanHuyen
+     * @return DmTinhTP
      */
     @Override
-    public DmQuanHuyen findOne(int id) {
+    public DmTinhTP findOne(int id) {
         try {
-            return dmQuanHuyenRepository.findOne(id);
+            return dmTinhTPRepository.findOne(id);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
 
     /**
-     * Thêm mới Quận Huyện
-     * @param dmQuanHuyen
+     * Thêm mới Tỉnh TP
+     * @param dmTinhTP
      * @return boolean <true: thêm mới thành công , false: thêm mới thất bại >
      */
     @Override
-    public boolean create(DmQuanHuyen dmQuanHuyen) {
+    public boolean create(DmTinhTP dmTinhTP) {
         try {
-            dmQuanHuyenRepository.create(dmQuanHuyen);
+            dmTinhTPRepository.create(dmTinhTP);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
 
     /**
-     * Sửa thông tin Quận Huyện
-     * @param dmQuanHuyen
+     * Sửa thông tin Tỉnh TP
+     * @param dmTinhTP
      * @return boolean <true: Sửa thành công , false: Sửa  thất bại >
      */
     @Override
-    public boolean update(DmQuanHuyen dmQuanHuyen) {
+    public boolean update(DmTinhTP dmTinhTP) {
         try {
-            dmQuanHuyenRepository.update(dmQuanHuyen);
+            dmTinhTPRepository.update(dmTinhTP);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
 
     /**
-     * Xóa Quận Huyện
-     * @param id <id của Quận Huyện>
+     * Xóa Tỉnh TP
+     * @param id <id của Tỉnh TP>
      * @return boolean <true: Xóa thành công , false: Xóa thất bại >
      */
     @Override
     public boolean deleteById(int id) {
         try {
-            dmQuanHuyenRepository.deleteById(id);
+            dmTinhTPRepository.deleteById(id);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
