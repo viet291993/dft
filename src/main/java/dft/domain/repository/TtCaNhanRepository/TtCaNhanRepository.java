@@ -21,14 +21,29 @@ public interface TtCaNhanRepository {
     public DMGioiTinh findAllGioiTinh();
 
     @Select("select count(*) from TT_CA_NHAN where MA_Y_TE_CA_NHAN = #{maYTeCaNhan}")
-    public int findOne(String maYTeCaNhan);
+    public int findOneByMaYTeCaNhan(String maYTeCaNhan);
 
-    //<editor-fold defaultstate="collapsed" desc="lấy ra danh mục tỉnh, huyện, thôn">
+    @Select("select ma_y_te_ca_nhan from tt_ca_nhan where id = #{id}")
+    public String findMaYTeCaNhanById(Long id);
+
+    @Select("select ho_ten, " +
+            "gioi_tinh_id, " +
+            "ngay_sinh, " +
+            "TT_TINH_ID, " +
+            "TT_HUYEN_ID, " +
+            "TT_XA_ID, " +
+            "TT_THON_XOM_ID from tt_ca_nhan where id = #{id}")
+    public TtCaNhan findOneById(Long id);
+
+    //<editor-fold defaultstate="collapsed" desc="lấy ra danh mục tỉnh, huyện, xã, thôn">
     @Select("select * from DM_TINH_TP")
     public List<DmQuanHuyen> findAllTinh();
 
     @Select("select * from DM_QUAN_HUYEN where rownum <= 5")
     public List<DmQuanHuyen> findAllQuanHuyen();
+
+    @Select("select * from DM_XA_PHUONG")
+    public List<DmQuanHuyen> findAllXaPhuong();
 
     @Select("select * from DM_THON_XOM")
     public List<DmQuanHuyen> findAllThonXom();
@@ -60,6 +75,9 @@ public interface TtCaNhanRepository {
                 "TT_HUYEN_ID = #{ttHuyen.id}\n" +
             "where ID = #{id}")
     public void update(TtCaNhan ttCaNhan);
+
+    @Delete("delete from tt_ca_nhan where id = #{id}")
+    public void delete(Long id);
     //</editor-fold>
 
 }

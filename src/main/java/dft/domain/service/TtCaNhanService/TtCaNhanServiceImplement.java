@@ -41,12 +41,27 @@ public class TtCaNhanServiceImplement implements TtCaNhanService {
     }
 
     @Override
-    public int findOne(String maYTeCaNhan) {
-        return ttCaNhanRepository.findOne(maYTeCaNhan);
+    public int findOneByMaYTeCaNhan(String maYTeCaNhan) {
+        return ttCaNhanRepository.findOneByMaYTeCaNhan(maYTeCaNhan);
+    }
+
+    @Override
+    public String findMaYTeCaNhanById(Long id) {
+        return ttCaNhanRepository.findMaYTeCaNhanById(id);
     }
 
     @Override
     public void update(TtCaNhan ttCaNhan) {
         ttCaNhanRepository.insert(ttCaNhan);
+    }
+
+    @Override
+    public TtCaNhan findOneById(Long id) {
+        return ttCaNhanRepository.findOneById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        ttCaNhanRepository.delete(id);
     }
 }
