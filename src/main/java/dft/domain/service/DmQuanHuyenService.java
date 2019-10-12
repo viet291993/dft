@@ -14,4 +14,6 @@ public interface DmQuanHuyenService {
     boolean update(DmQuanHuyen dmQuanHuyen);
 
     boolean deleteById(int id);
+
+    List<DmQuanHuyen> findByKeyWord (String keyWord);
 }
