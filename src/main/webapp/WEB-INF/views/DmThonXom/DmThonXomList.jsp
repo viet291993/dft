@@ -1,36 +1,24 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ndang
-  Date: 10/10/2019
-  Time: 9:41 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Danh sách: Thôn xóm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        <h1>Danh sách các thôn xóm</h1>
-        <div>
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <th>ID</th>
-                    <th>Mã thôn</th>
-                    <th>Tên Thôn</th>
-                    <th>Mô tả thôn</th>
-                    <th>Mã tỉnh</th>
-                    <th>Mã huyện</th>
-                    <th>Mã xã</th>
-                    <th>Trạng thái</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </thead>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib prefix="l" tagdir="/WEB-INF/tags" %>
+<l:template title="Danh mục thôn xóm">
+    <jsp:attribute name="content">
+		 <table class="table table-bordered">
+             <thead class="thead-dark">
+             <th>ID</th>
+             <th>Mã thôn</th>
+             <th>Tên Thôn</th>
+             <th>Mô tả thôn</th>
+             <th>Mã tỉnh</th>
+             <th>Mã huyện</th>
+             <th>Mã xã</th>
+             <th>Trạng thái</th>
+             <th>Edit</th>
+             <th>Delete</th>
+             </thead>
 
-                <tbody>
-                <c:forEach items="${DmThonXoms}" var="DmThonXoms">
+             <tbody>
+             <c:forEach items="${DmThonXoms}" var="DmThonXoms">
                     <tr>
                         <td>${DmThonXoms.id }</td>
                         <td>${DmThonXoms.maThon }</td>
@@ -49,9 +37,8 @@
                                         return false ">Delete</a></td>
                     </tr>
                 </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</body>
-</html>
+             </tbody>
+         </table>
+	</jsp:attribute>
+</l:template>
+
