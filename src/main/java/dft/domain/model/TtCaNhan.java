@@ -6,10 +6,10 @@ public class TtCaNhan {
     private String hoTen;
     private DMGioiTinh gioiTinh;
     private Integer ngaySinh;
-//    private DmTinhTP ttTinh;
+    private DmTinhTP ttTinh;
     private DmQuanHuyen ttHuyen;
-//    private DmXaPhuong ttXa;
-//    private DmThonXom ttThonXom;
+    private DmXaPhuong ttXa;
+    private DmThonXom ttThonXom;
 //    private DmTinhTP htTinh;
 //    private DmQuanHuyen htHuyen;
 //    private DmXaPhuong htXa;
@@ -57,15 +57,15 @@ public class TtCaNhan {
     public void setNgaySinh(Integer ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
-//
-//    public DmTinhTP getTtTinh() {
-//        return ttTinh;
-//    }
-//
-//    public void setTtTinh(DmTinhTP ttTinh) {
-//        this.ttTinh = ttTinh;
-//    }
-//
+
+    public DmTinhTP getTtTinh() {
+        return ttTinh;
+    }
+
+    public void setTtTinh(DmTinhTP ttTinh) {
+        this.ttTinh = ttTinh;
+    }
+
     public DmQuanHuyen getTtHuyen() {
         return ttHuyen;
     }
@@ -73,22 +73,22 @@ public class TtCaNhan {
     public void setTtHuyen(DmQuanHuyen ttHuyen) {
         this.ttHuyen = ttHuyen;
     }
-//
-//    public DmXaPhuong getTtXa() {
-//        return ttXa;
-//    }
-//
-//    public void setTtXa(DmXaPhuong ttXa) {
-//        this.ttXa = ttXa;
-//    }
-//
-//    public DmThonXom getTtThonXom() {
-//        return ttThonXom;
-//    }
-//
-//    public void setTtThonXom(DmThonXom ttThonXom) {
-//        this.ttThonXom = ttThonXom;
-//    }
+
+    public DmXaPhuong getTtXa() {
+        return ttXa;
+    }
+
+    public void setTtXa(DmXaPhuong ttXa) {
+        this.ttXa = ttXa;
+    }
+
+    public DmThonXom getTtThonXom() {
+        return ttThonXom;
+    }
+
+    public void setTtThonXom(DmThonXom ttThonXom) {
+        this.ttThonXom = ttThonXom;
+    }
 //
 //    public DmTinhTP getHtTinh() {
 //        return htTinh;

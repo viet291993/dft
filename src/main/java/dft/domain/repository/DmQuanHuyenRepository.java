@@ -19,4 +19,6 @@ public interface DmQuanHuyenRepository {
     void deleteById(int id);
 
     List<DmQuanHuyen> findByKeyWord (String keyWord);
+
+    List<DmQuanHuyen> findByMaTinh (String maTinh);
 }

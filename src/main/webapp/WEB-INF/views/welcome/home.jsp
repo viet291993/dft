@@ -18,7 +18,7 @@
 <nav class="navbar" style="background: #e6e2eb">
     <a class="navbar-brand" href="#">Trang chủ</a>
     <a class="navbar-brand" href="#">Tinh</a>
-    <a class="navbar-brand" href="#">Quận huyện</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/QuanHuyen">Quận huyện</a>
     <a class="navbar-brand" href="${pageContext.request.contextPath}/dmxaphuong">Xã phường</a>
     <a class="navbar-brand" href="${pageContext.request.contextPath}/dm-thonxom/list">Thôn xóm</a>
     <a class="navbar-brand" href="${pageContext.request.contextPath}/ttCaNhan/">Thông tin cá nhân</a>
@@ -30,28 +30,40 @@
 
 <div class="container">
     <div style="padding-top: 20px">
-        <form>
+        <form:form action="/" method="post" modelAttribute="TtCaNhan">
             <div class="row">
                 <span class="label label-default">Địa phương</span>
 
                 <div class="col-sm">
-                    <input type="text" class="form-control" id="tinhId" placeholder="Tỉnh/thành">
+                    <form:select path="ttTinh" id="tinh">
+                        <form:option disabled="true" value="" label="-- Chọn Tỉnh/Thành phố"/>
+                        <form:options items="${litsTinhTP_Selects}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </div>
                 <div class="col-sm">
-                    <input type="text" class="form-control" id="huyenId" placeholder="Quận/Huyện">
+                    <form:select path="ttHuyen" id="quanHuyen">
+                        <form:option value="" label="-- Chọn Quận huyện"/>
+                        <form:options items="${listQuanHuyen_Selects}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </div>
                 <div class="col-sm">
-                    <input type="text" class="form-control" id="phuongId" placeholder="Phường/Xã">
+                    <form:select path="ttXa" id="phuongXa">
+                        <form:option value="" label="-- Chọn Phường xã"/>
+                        <form:options items="${listPhuongXa_Selects}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </div>
                 <div class="col-sm">
-                    <input type="text" class="form-control" id="thonId" placeholder="Thông/Xóm">
+                    <form:select path="ttThonXom" id="thonXom">
+                        <form:option value="" label="-- Chọn Thôn xóm"/>
+                        <form:options items="${listThonXom_Selects}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </div>
             </div>
 
             <div class="col-sm" style="padding-top: 10px; text-align: center;">
                 <input type="submit" value="Tìm kiếm">
             </div>
-        </form>
+        </form:form>
         <div style="padding-top: 20px">
             <table class="table table-bordered">
                 <thead>
@@ -83,3 +95,44 @@
         </div>
 </body>
 </html>
+<script type="text/javascript" charset="utf-8">
+    $("select#tinh").change(function(){
+        $.getJSON(
+            "/ajax/QuanHuyen",
+            {tinhMa: $(this).val()},
+            function(data){
+            var html  = '';
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+            }
+            $("select#quanHuyen").html(html);
+        });
+    });
+
+    $("select#quanHuyen").change(function(){
+        $.getJSON(
+            "/ajax/PhuongXa",
+            {quanHuyenMa: $(this).val()},
+            function(data){
+                var html  = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                }
+                $("select#phuongXa").html(html);
+            });
+    });
+
+    $("select#phuongXa").change(function(){
+        $.getJSON(
+            "/ajax/ThonXom",
+            {phuongXaMa: $(this).val()},
+            function(data){
+                var html  = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                }
+                $("select#thonXom").html(html);
+            });
+    });
+</script>
+

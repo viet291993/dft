@@ -108,4 +108,14 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
             return null;
         }
     }
+
+    @Override
+    public List<DmQuanHuyen> findByMaTinh(String maTinh) {
+        try {
+            return dmQuanHuyenRepository.findByMaTinh(maTinh);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
