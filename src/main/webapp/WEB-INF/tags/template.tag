@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app/javascript/js.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>${title}</title>
@@ -27,7 +32,7 @@
              class="rounded-circle">Trang chủ
     </a>
     <ul class="navbar-nav">
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Tỉn</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Tỉnh</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Quận huyện</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dmxaphuong" class="nav-link">Xã phường</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dm-thonxom/list" class="nav-link">Thôn xóm</a></li>
@@ -47,14 +52,7 @@
     </ul>
 </div>
 <div style="background: #e9ecef; width: 100%; height: 80px; position: relative;">
-    <div class="row col-md-12" style="left: 20%; padding-top: 20px; position: absolute; z-index: 11">
-        <label style="font-weight: bold;">Địa phương</label>&nbsp;
-        <input type="text" placeholder="Tỉnh/Thành Phố"> &nbsp; &nbsp;
-        <input type="text" placeholder="Quận/Huyện">&nbsp; &nbsp;
-        <input type="text" placeholder="Xã/Phường">&nbsp; &nbsp;
-        <input type="text" placeholder="Thôn/Xóm">&nbsp; &nbsp;
-        <input type="submit" name="" value="Tìm kiếm">
-    </div>
+
 </div>
 <div class="row col-md-12" style=" padding-top: 10px;
 	; background: #ffffff; ">
@@ -87,10 +85,12 @@
 <div class="footer">
     <div class="container">
         <p style="text-align: center; color: #b4acac;">Bản dự án demo</p>
-        <!-- footer -->
-        <jsp:invoke fragment="footer"/>
-        <!-- /footer -->
     </div>
 </div>
 </body>
+<footer>
+    <!-- footer -->
+    <jsp:invoke fragment="footer"/>
+    <!-- /footer -->
+</footer>
 </html>
