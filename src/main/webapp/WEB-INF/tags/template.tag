@@ -32,8 +32,8 @@
              class="rounded-circle">Trang chủ
     </a>
     <ul class="navbar-nav">
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Tỉnh</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Quận huyện</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/Tinh" class="nav-link">Tỉnh</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/QuanHuyen/" class="nav-link">Quận huyện</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dmxaphuong" class="nav-link">Xã phường</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dm-thonxom/list" class="nav-link">Thôn xóm</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/ttCaNhan/" class="nav-link">Thông tin cá nhân</a></li>

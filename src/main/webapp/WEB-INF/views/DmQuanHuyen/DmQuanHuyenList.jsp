@@ -6,23 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Danh sách Quận Huyện</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Mã</th>
-            <th>Tên</th>
-            <th>Mô tả</th>
-            <th>Mã tỉnh</th>
-            <th>Cấp</th>
-            <th>Trạng thái</th>
-            <th></th>
-        </tr>
-        <c:forEach items="${listDmQuanHuyen}" var="QH">
+<%@taglib prefix="l" tagdir="/WEB-INF/tags" %>
+<l:template title="Danh sách Quận Huyện">
+    <jsp:attribute name="content">
+        <form method="get" action="/QuanHuyen">
+            <input type="text" name="keyword" value="${param.keyword}" />
+            <button>Tìm kiếm</button>
+        </form>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <th>ID</th>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Mã tỉnh</th>
+                <th>Cấp</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </thead>
+            <tbody>
+            <c:forEach items="${listDmQuanHuyen}" var="QH">
             <tr>
                 <td>${QH.id}</td>
                 <td>${QH.ma}</td>
@@ -37,6 +40,8 @@
                 </td>
             </tr>
         </c:forEach>
-    </table>
-</body>
-</html>
+            </tbody>
+        </table>
+    </jsp:attribute>
+</l:template>
+
