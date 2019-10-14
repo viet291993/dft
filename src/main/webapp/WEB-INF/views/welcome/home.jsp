@@ -1,57 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Trang chu
-    </title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-</head>
-<body>
-
-<nav class="navbar" style="background: #e6e2eb">
-    <a class="navbar-brand" href="#">Trang chủ</a>
-    <a class="navbar-brand" href="#">Tinh</a>
-    <a class="navbar-brand" href="#">Quận huyện</a>
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/dmxaphuong">Xã phường</a>
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/dm-thonxom/list">Thôn xóm</a>
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/ttCaNhan/">Thông tin cá nhân</a>
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
-
-<div class="container">
-    <div style="padding-top: 20px">
-        <form>
-            <div class="row">
-                <span class="label label-default">Địa phương</span>
-
-                <div class="col-sm">
-                    <input type="text" class="form-control" id="tinhId" placeholder="Tỉnh/thành">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib prefix="l" tagdir="/WEB-INF/tags" %>
+<l:template title="Trang chu">
+    <jsp:attribute name="content">
+         <form:form action="/" method="post" modelAttribute="TtCaNhan">
+                <div class="row">
+                    <span >Địa phương</span>
+                    <div>
+                        <form:select path="ttTinh" id="tinh">
+                            <form:option selected="selected"  disabled="true"  value="" label="-- Chọn Tỉnh/Thành phố --"/>
+                            <form:options items="${litsTinhTP_Selects}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </div>
+                    <div >
+                        <form:select path="ttHuyen" id="quanHuyen">
+                            <form:option selected="selected"  disabled="true" value="" label="-- Chọn Quận huyện --"/>
+                            <form:options items="${listQuanHuyen_Selects}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </div>
+                    <div>
+                        <form:select path="ttXa" id="phuongXa">
+                            <form:option selected="selected"  disabled="true" value="" label="-- Chọn Phường xã --"/>
+                            <form:options items="${listPhuongXa_Selects}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </div>
+                    <div >
+                        <form:select path="ttThonXom" id="thonXom">
+                            <form:option  selected="selected"  disabled="true" value="" label="-- Chọn Thôn xóm"/>
+                            <form:options items="${listThonXom_Selects}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </div>
                 </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" id="huyenId" placeholder="Quận/Huyện">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" id="phuongId" placeholder="Phường/Xã">
-                </div>
-                <div class="col-sm">
-                    <input type="text" class="form-control" id="thonId" placeholder="Thông/Xóm">
-                </div>
-            </div>
 
             <div class="col-sm" style="padding-top: 10px; text-align: center;">
                 <input type="submit" value="Tìm kiếm">
             </div>
-        </form>
+        </form:form>
         <div style="padding-top: 20px">
             <table class="table table-bordered">
                 <thead>
@@ -81,5 +65,50 @@
             <div>
             </div>
         </div>
-</body>
-</html>
+    </jsp:attribute>
+    <jsp:attribute name="footer">
+    <script type="text/javascript" charset="utf-8">
+        $("select#tinh").change(function(){
+            $.getJSON(
+                "/ajax/QuanHuyen",
+                {tinhMa: $(this).val()},
+                function(data){
+                var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Quận huyện --</option>';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                }
+                $("select#quanHuyen").html(html);
+                $("select#phuongXa").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Phường Xã --</option> ');
+                $("select#thonXom").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option> ');
+            });
+        });
+
+        $("select#quanHuyen").change(function(){
+            $.getJSON(
+                "/ajax/PhuongXa",
+                {quanHuyenMa: $(this).val()},
+                function(data){
+                    var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Phường Xã --</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option  value="' + data[i].id + '">' + data[i].ten + '</option>';
+                    }
+                    $("select#phuongXa").html(html);
+                    $("select#thonXom").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option> ');
+                });
+        });
+
+        $("select#phuongXa").change(function(){
+            $.getJSON(
+                "/ajax/ThonXom",
+                {phuongXaMa: $(this).val()},
+                function(data){
+                    var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                    }
+                    $("select#thonXom").html(html);
+                });
+        });
+    </script>
+</jsp:attribute>
+</l:template>

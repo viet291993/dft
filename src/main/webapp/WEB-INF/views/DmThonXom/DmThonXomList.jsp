@@ -17,33 +17,31 @@
         <div>
             <table class="table table-bordered">
                 <thead class="thead-dark">
-                    <th>ID</th>
-                    <th>Mã thôn</th>
+                    <th>Số Thứ tự</th>
                     <th>Tên Thôn</th>
                     <th>Mô tả thôn</th>
-                    <th>Mã tỉnh</th>
-                    <th>Mã huyện</th>
-                    <th>Mã xã</th>
+                    <th>Tỉnh</th>
+                    <th>Huyện</th>
+                    <th>Xã</th>
                     <th>Trạng thái</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </thead>
 
                 <tbody>
-                <c:forEach items="${DmThonXoms}" var="DmThonXoms">
+                <c:forEach items="${DmThonXoms}" var="thonxom">
                     <tr>
-                        <td>${DmThonXoms.id }</td>
-                        <td>${DmThonXoms.maThon }</td>
-                        <td>${DmThonXoms.tenThon }</td>
-                        <td>${DmThonXoms.moTaThon }</td>
-                        <td>${DmThonXoms.maTinh }</td>
-                        <td>${DmThonXoms.maHuyen }</td>
-                        <td>${DmThonXoms.maXa }</td>
-                        <td>${DmThonXoms.trangThai}</td>
+                        <td>${thonxom.id }</td>
+                        <td>${thonxom.ten }</td>
+                        <td>${thonxom.moTaThon}</td>
+                        <td>${thonxom.tinh }</td>
+                        <td>${thonxom.huyen }</td>
+                        <td>${thonxom.xa }</td>
+                        <td>${thonxom.trangThai }</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/dm-thonxom/edit/${DmThonXoms.id }">Edit</a></td>
+                            <a href="${pageContext.request.contextPath}/dm-thonxom/edit/${thonxom.id }">Edit</a></td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/dm-thonxom/delete/${DmThonXoms.id}"
+                            <a href="${pageContext.request.contextPath}/dm-thonxom/delete/${thonxom.id}"
                                onclick="
                                     if (!(confirm('Bạn có chắc chắn muốn xóa????')))
                                         return false ">Delete</a></td>

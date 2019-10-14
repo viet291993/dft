@@ -1,14 +1,19 @@
 package dft.domain.repository;
 
 import dft.domain.model.DmThonXom;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
 @Repository
-public interface DmThonXomRepository {
+public interface DmThonXomRepository  {
     List<DmThonXom> findAll();
+
+    List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong);
 
     DmThonXom findById(int id);
 
@@ -17,4 +22,5 @@ public interface DmThonXomRepository {
     void update(DmThonXom dmThonXom);
 
     void deleteById(int id);
+
 }

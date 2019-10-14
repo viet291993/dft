@@ -2,6 +2,8 @@ package dft.domain.service;
 
 import dft.domain.model.DmThonXom;
 import dft.domain.repository.DmThonXomRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,12 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     public List<DmThonXom> findAll() {
         return dmThonXomRepository.findAll();
     }
+
+    @Override
+    public List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong) {
+        return dmThonXomRepository.findThonXomByMaXaPhuong(idXaPhuong);
+    }
+
 
     @Override
     public DmThonXom findById(int id) {
@@ -39,4 +47,6 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     public void deleteById(int id) {
         dmThonXomRepository.deleteById(id);
     }
+
+
 }

@@ -1,11 +1,14 @@
 package dft.domain.service;
 
 import dft.domain.model.DmThonXom;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface DmThonXomService {
     List<DmThonXom> findAll();
+    List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong);
 
     DmThonXom findById(int id);
 
@@ -14,4 +17,5 @@ public interface DmThonXomService {
     void update(DmThonXom dmThonXom);
 
     void deleteById(int id);
+
 }

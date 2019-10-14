@@ -16,4 +16,6 @@ public interface DmQuanHuyenService {
     boolean deleteById(int id);
 
     List<DmQuanHuyen> findByKeyWord (String keyWord);
+
+    List<DmQuanHuyen> findByMaTinh ( String maXaPhuong);
 }
