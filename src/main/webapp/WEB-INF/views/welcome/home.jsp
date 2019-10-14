@@ -8,25 +8,25 @@
                     <span >Địa phương</span>
                     <div>
                         <form:select path="ttTinh" id="tinh">
-                            <form:option disabled="true" value="" label="-- Chọn Tỉnh/Thành phố"/>
+                            <form:option selected="selected"  disabled="true"  value="" label="-- Chọn Tỉnh/Thành phố --"/>
                             <form:options items="${litsTinhTP_Selects}" itemValue="ma" itemLabel="ten"/>
                         </form:select>
                     </div>
                     <div >
                         <form:select path="ttHuyen" id="quanHuyen">
-                            <form:option value="" label="-- Chọn Quận huyện"/>
+                            <form:option selected="selected"  disabled="true" value="" label="-- Chọn Quận huyện --"/>
                             <form:options items="${listQuanHuyen_Selects}" itemValue="ma" itemLabel="ten"/>
                         </form:select>
                     </div>
                     <div>
                         <form:select path="ttXa" id="phuongXa">
-                            <form:option value="" label="-- Chọn Phường xã"/>
+                            <form:option selected="selected"  disabled="true" value="" label="-- Chọn Phường xã --"/>
                             <form:options items="${listPhuongXa_Selects}" itemValue="ma" itemLabel="ten"/>
                         </form:select>
                     </div>
                     <div >
                         <form:select path="ttThonXom" id="thonXom">
-                            <form:option value="" label="-- Chọn Thôn xóm"/>
+                            <form:option  selected="selected"  disabled="true" value="" label="-- Chọn Thôn xóm"/>
                             <form:options items="${listThonXom_Selects}" itemValue="ma" itemLabel="ten"/>
                         </form:select>
                     </div>
@@ -73,11 +73,13 @@
                 "/ajax/QuanHuyen",
                 {tinhMa: $(this).val()},
                 function(data){
-                var html  = '';
+                var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Quận huyện --</option>';
                 for (var i = 0; i < data.length; i++) {
                     html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
                 }
                 $("select#quanHuyen").html(html);
+                $("select#phuongXa").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Phường Xã --</option> ');
+                $("select#thonXom").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option> ');
             });
         });
 
@@ -86,11 +88,12 @@
                 "/ajax/PhuongXa",
                 {quanHuyenMa: $(this).val()},
                 function(data){
-                    var html  = '';
+                    var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Phường Xã --</option>';
                     for (var i = 0; i < data.length; i++) {
-                        html += '<option value="' + data[i].id + '">' + data[i].ten + '</option>';
+                        html += '<option  value="' + data[i].id + '">' + data[i].ten + '</option>';
                     }
                     $("select#phuongXa").html(html);
+                    $("select#thonXom").html('<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option> ');
                 });
         });
 
@@ -99,7 +102,7 @@
                 "/ajax/ThonXom",
                 {phuongXaMa: $(this).val()},
                 function(data){
-                    var html  = '';
+                    var html  = '<option selected="selected"  disabled="true"  value=""> -- Chọn Thôn Xóm --</option>';
                     for (var i = 0; i < data.length; i++) {
                         html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
                     }
