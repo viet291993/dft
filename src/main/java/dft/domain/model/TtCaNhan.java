@@ -10,11 +10,11 @@ public class TtCaNhan {
     private DmQuanHuyen ttHuyen;
     private DmXaPhuong ttXa;
     private DmThonXom ttThonXom;
-//    private DmTinhTP htTinh;
-//    private DmQuanHuyen htHuyen;
-//    private DmXaPhuong htXa;
-//    private DmThonXom htThonXom;
-//    private boolean trangThai;
+    private DmTinhTP htTinh;
+    private DmQuanHuyen htHuyen;
+    private DmXaPhuong htXa;
+    private DmThonXom htThonXom;
+    private boolean trangThai;
 
     //<editor-fold defaultstate="collapsed" desc="set và get">
 
@@ -89,45 +89,45 @@ public class TtCaNhan {
     public void setTtThonXom(DmThonXom ttThonXom) {
         this.ttThonXom = ttThonXom;
     }
-//
-//    public DmTinhTP getHtTinh() {
-//        return htTinh;
-//    }
-//
-//    public void setHtTinh(DmTinhTP htTinh) {
-//        this.htTinh = htTinh;
-//    }
-//
-//    public DmQuanHuyen getHtHuyen() {
-//        return htHuyen;
-//    }
-//
-//    public void setHtHuyen(DmQuanHuyen htHuyen) {
-//        this.htHuyen = htHuyen;
-//    }
-//
-//    public DmXaPhuong getHtXa() {
-//        return htXa;
-//    }
-//
-//    public void setHtXa(DmXaPhuong htXa) {
-//        this.htXa = htXa;
-//    }
-//
-//    public DmThonXom getHtThonXom() {
-//        return htThonXom;
-//    }
-//
-//    public void setHtThonXom(DmThonXom htThonXom) {
-//        this.htThonXom = htThonXom;
-//    }
-//
-//    public boolean isTrangThai() {
-//        return trangThai;
-//    }
-//
-//    public void setTrangThai(boolean trangThai) {
-//        this.trangThai = trangThai;
-//    }
+
+    public DmTinhTP getHtTinh() {
+        return htTinh;
+    }
+
+    public void setHtTinh(DmTinhTP htTinh) {
+        this.htTinh = htTinh;
+    }
+
+    public DmQuanHuyen getHtHuyen() {
+        return htHuyen;
+    }
+
+    public void setHtHuyen(DmQuanHuyen htHuyen) {
+        this.htHuyen = htHuyen;
+    }
+
+    public DmXaPhuong getHtXa() {
+        return htXa;
+    }
+
+    public void setHtXa(DmXaPhuong htXa) {
+        this.htXa = htXa;
+    }
+
+    public DmThonXom getHtThonXom() {
+        return htThonXom;
+    }
+
+    public void setHtThonXom(DmThonXom htThonXom) {
+        this.htThonXom = htThonXom;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
 //</editor-fold>
 }
