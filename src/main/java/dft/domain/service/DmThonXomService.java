@@ -1,13 +1,10 @@
-package dft.domain.repository;
+package dft.domain.service;
 
 import dft.domain.model.DmThonXom;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-@Repository
-public interface DmThonXomRepository {
+public interface DmThonXomService {
     List<DmThonXom> findAll();
 
     DmThonXom findById(int id);
