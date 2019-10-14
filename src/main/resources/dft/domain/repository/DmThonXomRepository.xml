@@ -32,10 +32,8 @@
             SELECT ]]>
                 <include refid="dmThonXom_Select"></include>
         <![CDATA[
-            FROM
-                  DM_THON_XOM
-            WHERE
-                  rownum < 5
+            FROM DM_THON_XOM
+            WHERE rownum <10
             ]]>
     </select>
 
@@ -45,18 +43,24 @@
                 ID thon_id,
                 TEN thon_ten,
                 MO_TA thon_moTaThon,
+                MA_TINH thon_maTinh,
+                MA_HUYEN thon_maHuyen,
+                MA_XA thon_maXA,
                 TRANG_THAI thon_trangThai
             FROM DM_THON_XOM
             WHERE ID= #{dmThonXomId}
         ]]>
     </select>
 
-    <update id="update" parameterType="DmThonXom" >
+    <update id="update" parameterType="DmThonXom">
         <![CDATA[
             UPDATE DM_THON_XOM
             SET
-                TEN = #{tenThon},
-                MO_TA = #{moTaThon},
+                TEN = #{ten},
+                MO_TA = #{moTa},
+                MA_TINH = #{maTinh},
+                MA_HUYEN = #{maHuyen},
+                MA_XA = #{maXa},
                 TRANG_THAI = #{trangThai}
             WHERE
                 ID = #{id}
@@ -94,9 +98,9 @@
         VALUES
         (
             HIBERNATE_SEQUENCE.nextval,
-            #{maThon},
-            #{tenThon},
-            #{moTaThon},
+            #{ma},
+            #{ten},
+            #{moTa},
             #{maTinh},
             #{maHuyen},
             #{maXa},

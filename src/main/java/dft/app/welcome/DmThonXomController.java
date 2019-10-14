@@ -60,15 +60,15 @@ public class DmThonXomController {
     public String listDmThonXom(Model model) throws Exception {
         List<DmThonXom> dmThonXoms = dmThonXomService.findAll();
 
-        List<DmThonXomDTO> dmThonXomDTOS = new ArrayList<>();
-        DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
+        List<DmThonXomDTO> dmThonXomDTOS = new ArrayList<DmThonXomDTO>();
         for (DmThonXom thonxom : dmThonXoms) {
+            DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
             int id = thonxom.getId();
             String ten = thonxom.getTen();
             String moTa = thonxom.getMoTa();
             String maTinh = thonxom.getMaTinh();
             String maHuyen = thonxom.getMaHuyen();
-            String maXa = thonxom.getMaXa();
+            String maXa = thonxom.getMaXa() !=null? thonxom.getMaXa():"";
             int trangThai = thonxom.getTrangThai();
 
             dmThonXomDTO.setId(id);
@@ -76,8 +76,8 @@ public class DmThonXomController {
             dmThonXomDTO.setMoTaThon(moTa != null ? moTa : "Chưa được mô tả");
             dmThonXomDTO.setTinh(maTinh != null ? dmTinhTPService.findOne(Integer.parseInt(maTinh)).getTen() : "Không tìm thấy");
             dmThonXomDTO.setHuyen(maHuyen != null ? dmQuanHuyenService.findOne(Integer.parseInt(maHuyen)).getTen() : "Không tìm thấy");
-            dmThonXomDTO.setXa(maXa != null ? "" : "Không tìm thấy");
-            dmThonXomDTO.setTrangThai(trangThai == 0 ? "Đang hoạt động" : "Dừng hoạt động");
+            dmThonXomDTO.setXa(maXa != null ? dmXaPhuongService.findById(Integer.parseInt(maXa)).getTen() : "Không tìm thấy");
+            dmThonXomDTO.setTrangThai(trangThai ==1?"Đang hoạt động":"Nghỉ");
 
             dmThonXomDTOS.add(dmThonXomDTO);
         }
@@ -120,16 +120,29 @@ public class DmThonXomController {
     /*Chức năng: Update thôn, xóm theo id*/
     @RequestMapping(value = "edit/{id}")
     public String editDmThonXomById(@PathVariable("id") int dmThonXomId, Model model) throws Exception {
-        DmThonXom dmThonXom = dmThonXomService.findById(dmThonXomId);
         DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
+        DmThonXom dmThonXom = dmThonXomService.findById(dmThonXomId);
+        String ten = dmThonXom.getTen();
+        String moTa = dmThonXom.getMoTa();
+        String maTinh = dmThonXom.getMaTinh();
+        String maHuyen = dmThonXom.getMaHuyen();
+        String maXa = dmThonXom.getMaXa();
+        int trangThai = dmThonXom.getTrangThai();
 
-        dmThonXomDTO.setTen(dmThonXom.getTen());
-        dmThonXomDTO.setTinh("");
-        dmThonXomDTO.setHuyen("");
-        dmThonXomDTO.setXa("");
-        dmThonXomDTO.setTrangThai(dmThonXom.getTrangThai() == 1 ? "Đang hoạt động" : "Dừng hoạt động");
+        DmTinhTP tinhTP = dmTinhTPService.findOne(Integer.parseInt(maTinh));
+        DmQuanHuyen quanHuyen = dmQuanHuyenService.findOne(Integer.parseInt(maHuyen));
+        DmXaPhuong xaPhuong = dmXaPhuongService.findById(Integer.parseInt(maXa));
+        dmThonXomDTO.setTen(
+               ten !=null?ten:"Không có");
+        dmThonXomDTO.setTinh(
+                tinhTP !=null? tinhTP.getTen():"Không có");
+        dmThonXomDTO.setHuyen(
+                quanHuyen !=null?quanHuyen.getTen():"Không có");
+        dmThonXomDTO.setXa(
+                xaPhuong !=null?xaPhuong.getTen():"Không có");
+        dmThonXomDTO.setTrangThai(trangThai ==1?"Đang hoạt động":"Nghỉ");
 
-        model.addAttribute("dmThonXom", dmThonXomDTO);
+        model.addAttribute("dmThonXomDTO", dmThonXomDTO);
         return "DmThonXom/DmThonXomEdit";
     }
 
