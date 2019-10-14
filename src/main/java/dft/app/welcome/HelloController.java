@@ -1,15 +1,19 @@
 package dft.app.welcome;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
+import dft.domain.model.DmQuanHuyen;
+import dft.domain.model.DmTinhTP;
+import dft.domain.model.TtCaNhan;
+import dft.domain.service.DmQuanHuyenService;
+import dft.domain.service.DmTinhTPService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Handles requests for the application home page.
@@ -23,19 +27,40 @@ public class HelloController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String home(Locale locale, Model model) {
+
+    @Inject
+    DmTinhTPService dmTinhTPService;
+
+    @Inject
+    DmQuanHuyenService dmQuanHuyenService;
+
+    // Lấy danh sách Tỉnh lên Seclect
+    @ModelAttribute("litsTinhTP_Selects")
+    public List<DmTinhTP> listDmTinhTP() {
+        return dmTinhTPService.findAll();
+    }
+//
+//    // Lấy danh sách Tỉnh lên Seclect
+//    @ModelAttribute("litsTinhTP_Selects")
+//    public List<DmQuanHuyen> listQuanHuyen() {
+//        return dmQuanHuyenService.findByMaTinh(tt);
+//    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Locale locale, Model model, @ModelAttribute("TtCaNhan") TtCaNhan ttCaNhan) {
+        model.addAttribute("TtCaNhan", new TtCaNhan());
         logger.info("Welcome home! The client locale is {}.", locale);
-
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-                DateFormat.LONG, locale);
-
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate);
-
         return "welcome/home";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public String search(Locale locale, Model model, @ModelAttribute("TtCaNhan") TtCaNhan TtCaNhan) {
+        return "welcome/home";
+    }
+
+    @RequestMapping(value="/ajax/QuanHuyen")
+    public @ResponseBody List<DmQuanHuyen> sectionList(@RequestParam(value="tinhMa", required=true) String MaTinh){
+        return dmQuanHuyenService.findByMaTinh(MaTinh);
     }
 
 }

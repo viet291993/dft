@@ -55,6 +55,30 @@
     ]]>
     </select>
 
+    <select id="findByMaQuanHuyen"  resultMap="DmXaPhuongResultMap">
+    <![CDATA[
+        SELECT
+            ID,
+            MA,
+            TEN,
+            MO_TA,
+            MA_TINH,
+            MA_HUYEN,
+            CAP,
+            TRANG_THAI,
+            NGAY_TAO,
+            NGUOI_TAO_ID,
+            NGAY_SUA,
+            NGUOI_SUA_ID
+        FROM
+            DM_XA_PHUONG
+        WHERE
+            MA_TINH = #{maTinh}
+            MA_HUYEN = #{maQuanHuyen}
+
+    ]]>
+    </select>
+
     <!--<insert id="create" parameterType="Todo">
     <![CDATA[
         INSERT INTO todo

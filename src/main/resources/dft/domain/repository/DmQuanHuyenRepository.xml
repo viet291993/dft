@@ -10,7 +10,7 @@
         <result property="ma" column="Q_ma" />
         <result property="ten" column="Q_ten" />
         <result property="moTa" column="Q_maTo" />
-        <result property="maTinh" column="Q_maTinh"/>
+        <result property="maTinh" column="Q_maTinh" />
         <result property="cap" column="Q_cap" />
         <result property="trangThai" column="Q_trangThai" />
     </resultMap>
@@ -57,6 +57,19 @@
             TEN LIKE '%' || #{keyWord} || '%' OR
             MO_TA LIKE '%' || #{keyWord} || '%' OR
             CAP LIKE '%' || #{keyWord} || '%'
+    ]]>
+    </select>
+
+    <select id="findByMaTinh" parameterType="String" resultMap="dmQuanHuyen">
+        <![CDATA[
+        SELECT ]]>
+        <include refid="dmQuanHuyen_Select" />
+        <![CDATA[
+        FROM
+            DM_QUAN_HUYEN
+        WHERE
+            MA_TINH = #{maTinh}
+
     ]]>
     </select>
 

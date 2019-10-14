@@ -29,18 +29,13 @@
 
     <select id="findAll" resultMap="dmThonXom">
         <![CDATA[
-            SELECT
-                  ID thon_id,
-                  MA thon_ma,
-                  TEN thon_ten,
-                  MO_TA thon_moTaThon,
-                  MA_TINH thon_maTinh,
-                  MA_HUYEN thon_maHuyen,
-                  MA_XA thon_maXa,
-                  TRANG_THAI thon_trangThai
+            SELECT ]]>
+                <include refid="dmThonXom_Select"></include>
+        <![CDATA[
             FROM
                   DM_THON_XOM
-
+            WHERE
+                  rownum < 5
             ]]>
     </select>
 
