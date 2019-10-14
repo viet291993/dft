@@ -52,7 +52,7 @@
         ]]>
     </select>
 
-    <update id="update" parameterType="DmThonXom">
+    <update id="update" parameterType="DmThonXom" >
         <![CDATA[
             UPDATE DM_THON_XOM
             SET
@@ -87,7 +87,7 @@
             ]]>
     </select>
 
-    <insert id="create" parameterType="dmThonXom">
+    <insert id="create" parameterType="DmThonXom">
     <![CDATA[
         INSERT INTO DM_QUAN_HUYEN
         (

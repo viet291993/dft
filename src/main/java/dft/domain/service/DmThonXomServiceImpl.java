@@ -2,8 +2,6 @@ package dft.domain.service;
 
 import dft.domain.model.DmThonXom;
 import dft.domain.repository.DmThonXomRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

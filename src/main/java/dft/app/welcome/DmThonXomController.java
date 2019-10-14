@@ -120,44 +120,24 @@ public class DmThonXomController {
     /*Chức năng: Update thôn, xóm theo id*/
     @RequestMapping(value = "edit/{id}")
     public String editDmThonXomById(@PathVariable("id") int dmThonXomId, Model model) throws Exception {
-        DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
         DmThonXom dmThonXom = dmThonXomService.findById(dmThonXomId);
-        String ten = dmThonXom.getTen();
-        String moTa = dmThonXom.getMoTa();
         String maTinh = dmThonXom.getMaTinh();
         String maHuyen = dmThonXom.getMaHuyen();
         String maXa = dmThonXom.getMaXa();
-        int trangThai = dmThonXom.getTrangThai();
+        DmTinhTP dmTinhTP = dmTinhTPService.findOne(Integer.parseInt(maTinh));
+        DmQuanHuyen dmQuanHuyen = dmQuanHuyenService.findOne(Integer.parseInt(maHuyen));
+        DmXaPhuong dmXaPhuong = dmXaPhuongService.findById(Integer.parseInt(maXa));
 
-        DmTinhTP tinhTP = dmTinhTPService.findOne(Integer.parseInt(maTinh));
-        DmQuanHuyen quanHuyen = dmQuanHuyenService.findOne(Integer.parseInt(maHuyen));
-        DmXaPhuong xaPhuong = dmXaPhuongService.findById(Integer.parseInt(maXa));
-        dmThonXomDTO.setTen(
-               ten !=null?ten:"Không có");
-        dmThonXomDTO.setTinh(
-                tinhTP !=null? tinhTP.getTen():"Không có");
-        dmThonXomDTO.setHuyen(
-                quanHuyen !=null?quanHuyen.getTen():"Không có");
-        dmThonXomDTO.setXa(
-                xaPhuong !=null?xaPhuong.getTen():"Không có");
-        dmThonXomDTO.setTrangThai(trangThai ==1?"Đang hoạt động":"Nghỉ");
-
-        model.addAttribute("dmThonXomDTO", dmThonXomDTO);
+        model.addAttribute("tinh",dmTinhTP.getTen());
+        model.addAttribute("huyen",dmQuanHuyen.getTen());
+        model.addAttribute("xa",dmXaPhuong.getTen());
+        model.addAttribute("dmThonXom", dmThonXom);
         return "DmThonXom/DmThonXomEdit";
     }
 
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@ModelAttribute("dmThonXom") DmThonXomDTO dmThonXomDTO, Model model) throws Exception {
-        DmThonXom dmThonXom = new DmThonXom();
-
-        dmThonXom.setTen(dmThonXomDTO.getTen());
-        dmThonXom.setMoTa(dmThonXomDTO.getMoTaThon());
-        dmThonXom.setMaTinh("");
-        dmThonXom.setMaHuyen("");
-        dmThonXom.setMaXa("");
-        dmThonXom.setTrangThai(0);
-
+    public String update(@ModelAttribute("dmThonXom") DmThonXom dmThonXom, Model model) throws Exception {
         dmThonXomService.update(dmThonXom);
         return "redirect:/dm-thonxom/list";
     }
