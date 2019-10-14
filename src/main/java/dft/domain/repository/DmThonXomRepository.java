@@ -10,8 +10,10 @@ import java.util.List;
 
 
 @Repository
-public interface DmThonXomRepository extends PagingAndSortingRepository<DmThonXom, Integer> {
+public interface DmThonXomRepository  {
     List<DmThonXom> findAll();
+
+    List<DmThonXom> findThonXomByMaXaPhuong(String maXaPhuong);
 
     DmThonXom findById(int id);
 
@@ -21,5 +23,4 @@ public interface DmThonXomRepository extends PagingAndSortingRepository<DmThonXo
 
     void deleteById(int id);
 
-    Page<DmThonXom> findAllByMaTinhOrMaHuyenOrMaXa(String name, Pageable pageable);
 }

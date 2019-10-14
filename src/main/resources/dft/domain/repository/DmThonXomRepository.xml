@@ -70,4 +70,38 @@
                 ID = #{dmThonXomId}
         ]]>
     </delete>
+
+    <select id="findThonXomByMaXaPhuong" parameterType="string" resultMap="dmThonXom">
+        <![CDATA[
+            SELECT ]]>
+                    <include refid="dmThonXom_Select"></include>
+        <![CDATA[
+            FROM
+                  DM_THON_XOM
+            WHERE
+                  MA_XA = #{maXaPhuong}
+            ]]>
+    </select>
+
+    <insert id="create" parameterType="dmThonXom">
+    <![CDATA[
+        INSERT INTO DM_QUAN_HUYEN
+        (
+        ]]>
+                 <include refid="dmThonXom_Select"/>
+    <![CDATA[
+        )
+        VALUES
+        (
+            HIBERNATE_SEQUENCE.nextval,
+            #{maThon},
+            #{tenThon},
+            #{moTaThon},
+            #{maTinh},
+            #{maHuyen},
+            #{maXa},
+            #{trangThai}
+        )
+    ]]>
+    </insert>
 </mapper>
