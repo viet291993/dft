@@ -70,7 +70,7 @@ public class HelloController {
 
     @RequestMapping(value="/ajax/ThonXom")
     public @ResponseBody List<DmThonXom> sectionListThonXom(@RequestParam(value="phuongXaMa", required=true) String MaXaPhuong){
-        return dmThonXomService.findXaPhuongByMaXaPhuong(MaXaPhuong);
+        return dmThonXomService.findThonXomByMaXaPhuong(MaXaPhuong);
     }
 
 }

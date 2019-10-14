@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DmThonXomService {
     List<DmThonXom> findAll();
-    List<DmThonXom> findXaPhuongByMaXaPhuong(String maXaPhuong);
+    List<DmThonXom> findThonXomByMaXaPhuong(String maXaPhuong);
 
     DmThonXom findById(int id);
 

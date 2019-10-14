@@ -22,7 +22,7 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     }
 
     @Override
-    public List<DmThonXom> findXaPhuongByMaXaPhuong(String maXaPhuong) {
+    public List<DmThonXom> findThonXomByMaXaPhuong(String maXaPhuong) {
         return dmThonXomRepository.findThonXomByMaXaPhuong(maXaPhuong);
     }
 
