@@ -34,8 +34,8 @@ public class DmQuanHuyenController {
      * Hiển thị danh sách Quận huyện lên view
      */
     @GetMapping(value = "")
-    public String list(Model model) {
-        List<DmQuanHuyen> listDmQuanHuyen = dmQuanHuyenService.findAll();
+    public String list(Model model,@RequestParam(name = "keyword" ,required = false) String keyWord) {
+        List<DmQuanHuyen> listDmQuanHuyen =keyWord == null ? dmQuanHuyenService.findAll():dmQuanHuyenService.findByKeyWord(keyWord);
         model.addAttribute("listDmQuanHuyen", listDmQuanHuyen);
         return "DmQuanHuyen/DmQuanHuyenList";
     }
@@ -86,6 +86,4 @@ public class DmQuanHuyenController {
         };
         return "DmQuanHuyen/DmQuanHuyenUpdate";
     }
-
-
 }
