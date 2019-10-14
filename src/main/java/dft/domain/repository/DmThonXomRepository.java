@@ -13,7 +13,7 @@ import java.util.List;
 public interface DmThonXomRepository  {
     List<DmThonXom> findAll();
 
-    List<DmThonXom> findThonXomByMaXaPhuong(String maXaPhuong);
+    List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong);
 
     DmThonXom findById(int id);
 

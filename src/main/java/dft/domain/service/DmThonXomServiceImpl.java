@@ -22,9 +22,10 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     }
 
     @Override
-    public List<DmThonXom> findThonXomByMaXaPhuong(String maXaPhuong) {
-        return dmThonXomRepository.findThonXomByMaXaPhuong(maXaPhuong);
+    public List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong) {
+        return dmThonXomRepository.findThonXomByMaXaPhuong(idXaPhuong);
     }
+
 
     @Override
     public DmThonXom findById(int id) {

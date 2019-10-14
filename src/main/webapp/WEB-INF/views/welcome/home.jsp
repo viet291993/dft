@@ -88,7 +88,7 @@
                 function(data){
                     var html  = '';
                     for (var i = 0; i < data.length; i++) {
-                        html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                        html += '<option value="' + data[i].id + '">' + data[i].ten + '</option>';
                     }
                     $("select#phuongXa").html(html);
                 });

@@ -12,9 +12,9 @@ import java.util.Date;
  */
 public class DmThonXom implements Serializable {
     private int id;
-    private String maThon;
-    private String tenThon;
-    private String moTaThon;
+    private String ma;
+    private String ten;
+    private String moTa;
     private String maTinh;
     private String maHuyen;
     private String maXa;
@@ -23,11 +23,11 @@ public class DmThonXom implements Serializable {
     public DmThonXom() {
     }
 
-    public DmThonXom(int id, String maThon, String tenThon, String moTaThon, String maTinh, String maHuyen, String maXa, int trangThai) {
+    public DmThonXom(int id, String ma, String ten, String moTa, String maTinh, String maHuyen, String maXa, int trangThai) {
         this.id = id;
-        this.maThon = maThon;
-        this.tenThon = tenThon;
-        this.moTaThon = moTaThon;
+        this.ma = ma;
+        this.ten = ten;
+        this.moTa = moTa;
         this.maTinh = maTinh;
         this.maHuyen = maHuyen;
         this.maXa = maXa;
@@ -42,28 +42,28 @@ public class DmThonXom implements Serializable {
         this.id = id;
     }
 
-    public String getMaThon() {
-        return maThon;
+    public String getMa() {
+        return ma;
     }
 
-    public void setMaThon(String maThon) {
-        this.maThon = maThon;
+    public void setMa(String ma) {
+        this.ma = ma;
     }
 
-    public String getTenThon() {
-        return tenThon;
+    public String getTen() {
+        return ten;
     }
 
-    public void setTenThon(String tenThon) {
-        this.tenThon = tenThon;
+    public void setTen(String ten) {
+        this.ten = ten;
     }
 
-    public String getMoTaThon() {
-        return moTaThon;
+    public String getMoTa() {
+        return moTa;
     }
 
-    public void setMoTaThon(String moTaThon) {
-        this.moTaThon = moTaThon;
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
     }
 
     public String getMaTinh() {
@@ -97,5 +97,4 @@ public class DmThonXom implements Serializable {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-
 }

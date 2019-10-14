@@ -64,8 +64,8 @@ public class DmThonXomController {
         DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
         for (DmThonXom thonxom : dmThonXoms) {
             int id = thonxom.getId();
-            String ten = thonxom.getTenThon();
-            String moTa = thonxom.getMoTaThon();
+            String ten = thonxom.getTen();
+            String moTa = thonxom.getMoTa();
             String maTinh = thonxom.getMaTinh();
             String maHuyen = thonxom.getMaHuyen();
             String maXa = thonxom.getMaXa();
@@ -97,7 +97,7 @@ public class DmThonXomController {
     public String createThonXom(@ModelAttribute("dmThonXomDTO") DmThonXomDTO dmThonXomDTO, Model model) {
         DmThonXom dmThonXom = new DmThonXom();
 
-        dmThonXom.setTenThon(dmThonXomDTO.getTen());
+        dmThonXom.setTen(dmThonXomDTO.getTen());
         dmThonXom.setMaTinh("");
         dmThonXom.setMaHuyen("");
         dmThonXom.setMaXa("");
@@ -123,7 +123,7 @@ public class DmThonXomController {
         DmThonXom dmThonXom = dmThonXomService.findById(dmThonXomId);
         DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
 
-        dmThonXomDTO.setTen(dmThonXom.getTenThon());
+        dmThonXomDTO.setTen(dmThonXom.getTen());
         dmThonXomDTO.setTinh("");
         dmThonXomDTO.setHuyen("");
         dmThonXomDTO.setXa("");
@@ -138,8 +138,8 @@ public class DmThonXomController {
     public String update(@ModelAttribute("dmThonXom") DmThonXomDTO dmThonXomDTO, Model model) throws Exception {
         DmThonXom dmThonXom = new DmThonXom();
 
-        dmThonXom.setTenThon(dmThonXomDTO.getTen());
-        dmThonXom.setMoTaThon(dmThonXomDTO.getMoTaThon());
+        dmThonXom.setTen(dmThonXomDTO.getTen());
+        dmThonXom.setMoTa(dmThonXomDTO.getMoTaThon());
         dmThonXom.setMaTinh("");
         dmThonXom.setMaHuyen("");
         dmThonXom.setMaXa("");

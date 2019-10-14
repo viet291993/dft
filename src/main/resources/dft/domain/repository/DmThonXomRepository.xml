@@ -7,9 +7,9 @@
 
     <resultMap id="dmThonXom" type="DmThonXom">
         <id property="id" column="thon_id"/>
-        <result property="maThon" column="thon_ma"/>
-        <result property="tenThon" column="thon_ten"/>
-        <result property="moTaThon" column="thon_moTaThon"/>
+        <result property="ma" column="thon_ma"/>
+        <result property="ten" column="thon_ten"/>
+        <result property="moTa" column="thon_moTaThon"/>
         <result property="maTinh" column="thon_maTinh"/>
         <result property="maHuyen" column="thon_maHuyen"/>
         <result property="maXa" column="thon_maXa"/>
@@ -71,7 +71,7 @@
         ]]>
     </delete>
 
-    <select id="findThonXomByMaXaPhuong" parameterType="string" resultMap="dmThonXom">
+    <select id="findThonXomByMaXaPhuong" parameterType="int" resultMap="dmThonXom">
         <![CDATA[
             SELECT ]]>
                     <include refid="dmThonXom_Select"></include>
@@ -79,7 +79,7 @@
             FROM
                   DM_THON_XOM
             WHERE
-                  MA_XA = #{maXaPhuong}
+                  MA_XA = #{idXaPhuong}
             ]]>
     </select>
 
