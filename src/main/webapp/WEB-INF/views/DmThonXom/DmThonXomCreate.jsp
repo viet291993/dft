@@ -1,71 +1,111 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ndang
-  Date: 10/10/2019
-  Time: 10:58 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Tạo danh sách thôn xóm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
+<%@taglib prefix="l" tagdir="/WEB-INF/tags" %>
+<l:template title="Trang chu">
+<jsp:attribute name="content">
+    <div class="container">
     <h1>Tạo danh sách thôn xóm mới</h1>
     <form:form action="${pageContext.request.contextPath}/create" modelAttribute="dmThonXomDTO">
-    <table class="table table-bored">
-        <table class="table">
-            <tr>
-                <td>Thôn</td>
-                <td>
-                    <form:input path="ten"/>
-                    <form:hidden path="id"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Mô tả thôn</td>
-                <td>
-                    <form:input path="moTaThon"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Tỉnh</td>
-                <td>
-                    <form:input path="tinh"/>
-                </td>
-            </tr>
+            <table class="table">
+                <tr>
+                    <td>Thôn</td>
+                    <td>
+                        <form:input path="ten"/>
+                        <form:hidden path="id"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mô tả thôn</td>
+                    <td>
+                        <form:input path="moTaThon"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tỉnh</td>
+                    <td>
+                        <form:select path="tinh" id="tinh">
+                            <form:option disabled="true" value="" label="Chọn Tỉnh/Thành phố"/>
+                            <form:options items="${dmTinhTP_List}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>Huyện</td>
-                <td>
-                    <form:input path="huyen"/>
-                </td>
-            </tr>
+                <tr>
+                    <td>Huyện</td>
+                    <td>
+                        <form:select path="huyen" id="huyen">
+                            <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
+                            <form:options items="${dmQuanHuyen_List}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>Xã</td>
-                <td>
-                    <form:input path="xa"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Trạng thái hoạt động</td>
-                <td>
-                    <form:input path="trangThai"/>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <form:button type="submit">Update</form:button>
-                </td>
-            </tr>
-        </table>
-</div>
-</form:form>
+                <tr>
+                    <td>Xã</td>
+                    <td>
+                        <form:select path="xa" id="xa">
+                            <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
+                            <form:options items="${dmXaPhuong_List}" itemValue="ma" itemLabel="ten"/>
+                        </form:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Trạng thái hoạt động</td>
+                    <td>
+                        <form:radiobutton path="trangThai" value="1"/>Đang hoạt động
+                        <form:radiobutton path="trangThai" value="0"/>Dừng hoạt động<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <form:button type="submit">Create</form:button>
+                    </td>
+                </tr>
 
-</body>
-</html>
+            </table>
+    </form:form>
+    </div>
+</jsp:attribute>
+    <jsp:attribute name="footer">
+        <script type="text/javascript" charset="utf-8">
+            $("select#tinh").change(function(){
+                $.getJSON(
+                    "/ajax/QuanHuyen",
+                    {tinhMa: $(this).val()},
+                    function(data){
+                        var html  = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                        }
+                        $("select#quanHuyen").html(html);
+                    });
+            });
+
+            $("select#quanHuyen").change(function(){
+                $.getJSON(
+                    "/ajax/PhuongXa",
+                    {quanHuyenMa: $(this).val()},
+                    function(data){
+                        var html  = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<option value="' + data[i].id + '">' + data[i].ten + '</option>';
+                        }
+                        $("select#phuongXa").html(html);
+                    });
+            });
+
+            $("select#phuongXa").change(function(){
+                $.getJSON(
+                    "/ajax/ThonXom",
+                    {phuongXaMa: $(this).val()},
+                    function(data){
+                        var html  = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<option value="' + data[i].ma + '">' + data[i].ten + '</option>';
+                        }
+                        $("select#thonXom").html(html);
+                    });
+            });
+        </script>
+</jsp:attribute>
+</l:template>

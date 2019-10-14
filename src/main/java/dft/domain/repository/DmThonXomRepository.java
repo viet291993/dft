@@ -22,7 +22,4 @@ public interface DmThonXomRepository  {
     void update(DmThonXom dmThonXom);
 
     void deleteById(int id);
-
-
-
 }
