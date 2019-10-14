@@ -28,6 +28,7 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
 
     /**
      * Lấy thông tin Quận Huyên theo id
+     *
      * @param id <id>
      * @return DmQuanHuyen
      */
@@ -43,6 +44,7 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
 
     /**
      * Thêm mới Quận Huyện
+     *
      * @param dmQuanHuyen
      * @return boolean <true: thêm mới thành công , false: thêm mới thất bại >
      */
@@ -59,6 +61,7 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
 
     /**
      * Sửa thông tin Quận Huyện
+     *
      * @param dmQuanHuyen
      * @return boolean <true: Sửa thành công , false: Sửa  thất bại >
      */
@@ -75,6 +78,7 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
 
     /**
      * Xóa Quận Huyện
+     *
      * @param id <id của Quận Huyện>
      * @return boolean <true: Xóa thành công , false: Xóa thất bại >
      */
@@ -86,6 +90,22 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * Lấy danh sách Quận Huyện theo KeyWord
+     *
+     * @param keyWord <từ khóa tìm kiếm >
+     * @return List<DmQuanHuyen>  < danh sách Quận Huyện >
+     */
+    @Override
+    public List<DmQuanHuyen> findByKeyWord(String keyWord) {
+        try {
+            return dmQuanHuyenRepository.findByKeyWord(keyWord);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
