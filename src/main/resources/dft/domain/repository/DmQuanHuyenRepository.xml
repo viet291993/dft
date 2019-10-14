@@ -60,6 +60,19 @@
     ]]>
     </select>
 
+    <select id="findByMaTinh" parameterType="String" resultMap="dmQuanHuyen">
+        <![CDATA[
+        SELECT ]]>
+        <include refid="dmQuanHuyen_Select" />
+        <![CDATA[
+        FROM
+            DM_QUAN_HUYEN
+        WHERE
+            MA_TINH = #{maTinh}
+
+    ]]>
+    </select>
+
     <insert id="create" parameterType="dmQuanHuyen">
     <![CDATA[
         INSERT INTO DM_QUAN_HUYEN
