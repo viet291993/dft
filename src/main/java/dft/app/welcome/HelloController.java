@@ -1,10 +1,14 @@
 package dft.app.welcome;
 
 import dft.domain.model.DmQuanHuyen;
+import dft.domain.model.DmThonXom;
 import dft.domain.model.DmTinhTP;
+import dft.domain.model.DmXaPhuong;
 import dft.domain.model.TtCaNhan;
 import dft.domain.service.DmQuanHuyenService;
+import dft.domain.service.DmThonXomService;
 import dft.domain.service.DmTinhTPService;
+import dft.domain.service.DmXaPhuongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -34,6 +38,12 @@ public class HelloController {
     @Inject
     DmQuanHuyenService dmQuanHuyenService;
 
+    @Inject
+    DmXaPhuongService dmXaPhuongService;
+
+    @Inject
+    DmThonXomService dmThonXomService;
+
     // Lấy danh sách Tỉnh lên Seclect
     @ModelAttribute("litsTinhTP_Selects")
     public List<DmTinhTP> listDmTinhTP() {
@@ -61,6 +71,16 @@ public class HelloController {
     @RequestMapping(value="/ajax/QuanHuyen")
     public @ResponseBody List<DmQuanHuyen> sectionList(@RequestParam(value="tinhMa", required=true) String MaTinh){
         return dmQuanHuyenService.findByMaTinh(MaTinh);
+    }
+
+    @RequestMapping(value="/ajax/PhuongXa")
+    public @ResponseBody List<DmXaPhuong> sectionListPhuongXa(@RequestParam(value="quanHuyenMa", required=true) String maQuanHuyen){
+        return dmXaPhuongService.findByMaQuanHuyen(maQuanHuyen);
+    }
+
+    @RequestMapping(value="/ajax/ThonXom")
+    public @ResponseBody List<DmThonXom> sectionListThonXom(@RequestParam(value="phuongXaMa", required=true) Integer MaXaPhuong){
+        return dmThonXomService.findThonXomByMaXaPhuong(MaXaPhuong);
     }
 
 }

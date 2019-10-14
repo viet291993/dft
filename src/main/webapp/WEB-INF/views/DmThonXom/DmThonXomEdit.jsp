@@ -26,27 +26,37 @@
             <tr>
                 <td>Tỉnh</td>
                 <td>
-                    <form:input path="tinh"/>
+                    <form:select path="tinh" id="tinh">
+                        <form:option disabled="true" value="" label="Chọn Tỉnh/Thành phố"/>
+                        <form:options items="${dmTinhTP_List}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </td>
             </tr>
 
             <tr>
                 <td>Huyện</td>
                 <td>
-                    <form:input path="huyen"/>
+                    <form:select path="huyen" id="huyen">
+                        <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
+                        <form:options items="${dmQuanHuyen_List}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </td>
             </tr>
 
             <tr>
                 <td>Xã</td>
                 <td>
-                    <form:input path="xa"/>
+                    <form:select path="xa" id="xa">
+                        <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
+                        <form:options items="${dmXaPhuong_List}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
                 </td>
             </tr>
             <tr>
                 <td>Trạng thái hoạt động</td>
                 <td>
-                    <form:input path="trangThai"/>
+                    <form:radiobutton path="trangThai" value="1"/>
+                    <form:radiobutton path="trangThai" value="0"/><br>
                 </td>
             </tr>
             <tr>

@@ -17,5 +17,5 @@ public interface DmQuanHuyenService {
 
     List<DmQuanHuyen> findByKeyWord (String keyWord);
 
-    List<DmQuanHuyen> findByMaTinh (String maTinh);
+    List<DmQuanHuyen> findByMaTinh ( String maXaPhuong);
 }

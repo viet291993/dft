@@ -3,9 +3,11 @@ package dft.app.welcome;
 import dft.domain.dto.dmThonXom.DmThonXomDTO;
 import dft.domain.model.DmQuanHuyen;
 import dft.domain.model.DmThonXom;
+import dft.domain.model.DmTinhTP;
 import dft.domain.model.DmXaPhuong;
 import dft.domain.service.DmQuanHuyenService;
 import dft.domain.service.DmThonXomService;
+import dft.domain.service.DmTinhTPService;
 import dft.domain.service.DmXaPhuongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +26,9 @@ import java.util.Optional;
 public class DmThonXomController {
 
     @Autowired
+    private DmTinhTPService dmTinhTPService;
+
+    @Autowired
     private DmQuanHuyenService dmQuanHuyenService;
 
     @Autowired
@@ -33,6 +38,10 @@ public class DmThonXomController {
     private DmThonXomService dmThonXomService;
 
     /*Tạo Object List các tỉnh, TP*/
+    @ModelAttribute("dmTinhTP_List")
+    public List<DmTinhTP> danhSachTinhTP(){
+        return dmTinhTPService.findAll();
+    }
     /*Tạo Object List các huyện, quận*/
     @ModelAttribute("dmQuanHuyen_List")
     public List<DmQuanHuyen> danhSachQuanHuyen() {
@@ -55,8 +64,8 @@ public class DmThonXomController {
         DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
         for (DmThonXom thonxom : dmThonXoms) {
             int id = thonxom.getId();
-            String ten = thonxom.getTenThon();
-            String moTa = thonxom.getMoTaThon();
+            String ten = thonxom.getTen();
+            String moTa = thonxom.getMoTa();
             String maTinh = thonxom.getMaTinh();
             String maHuyen = thonxom.getMaHuyen();
             String maXa = thonxom.getMaXa();
@@ -65,12 +74,13 @@ public class DmThonXomController {
             dmThonXomDTO.setId(id);
             dmThonXomDTO.setTen(ten != null ? ten : "Không có");
             dmThonXomDTO.setMoTaThon(moTa != null ? moTa : "Chưa được mô tả");
-            dmThonXomDTO.setTinh(maTinh != null ? "Pending" : "Không tìm thấy");
-            dmThonXomDTO.setHuyen(maHuyen != null ? "Pending" : "Không tìm thấy");
-            dmThonXomDTO.setXa(maXa != null ? "Pending" : "Không tìm thấy");
+            dmThonXomDTO.setTinh(maTinh != null ? dmTinhTPService.findOne(Integer.parseInt(maTinh)).getTen() : "Không tìm thấy");
+            dmThonXomDTO.setHuyen(maHuyen != null ? dmQuanHuyenService.findOne(Integer.parseInt(maHuyen)).getTen() : "Không tìm thấy");
+            dmThonXomDTO.setXa(maXa != null ? "" : "Không tìm thấy");
             dmThonXomDTO.setTrangThai(trangThai == 0 ? "Đang hoạt động" : "Dừng hoạt động");
+
+            dmThonXomDTOS.add(dmThonXomDTO);
         }
-        dmThonXomDTOS.add(dmThonXomDTO);
         model.addAttribute("DmThonXoms", dmThonXomDTOS);
         return "DmThonXom/DmThonXomList";
     }
@@ -87,7 +97,7 @@ public class DmThonXomController {
     public String createThonXom(@ModelAttribute("dmThonXomDTO") DmThonXomDTO dmThonXomDTO, Model model) {
         DmThonXom dmThonXom = new DmThonXom();
 
-        dmThonXom.setTenThon(dmThonXomDTO.getTen());
+        dmThonXom.setTen(dmThonXomDTO.getTen());
         dmThonXom.setMaTinh("");
         dmThonXom.setMaHuyen("");
         dmThonXom.setMaXa("");
@@ -113,7 +123,7 @@ public class DmThonXomController {
         DmThonXom dmThonXom = dmThonXomService.findById(dmThonXomId);
         DmThonXomDTO dmThonXomDTO = new DmThonXomDTO();
 
-        dmThonXomDTO.setTen(dmThonXom.getTenThon());
+        dmThonXomDTO.setTen(dmThonXom.getTen());
         dmThonXomDTO.setTinh("");
         dmThonXomDTO.setHuyen("");
         dmThonXomDTO.setXa("");
@@ -128,8 +138,8 @@ public class DmThonXomController {
     public String update(@ModelAttribute("dmThonXom") DmThonXomDTO dmThonXomDTO, Model model) throws Exception {
         DmThonXom dmThonXom = new DmThonXom();
 
-        dmThonXom.setTenThon(dmThonXomDTO.getTen());
-        dmThonXom.setMoTaThon(dmThonXomDTO.getMoTaThon());
+        dmThonXom.setTen(dmThonXomDTO.getTen());
+        dmThonXom.setMoTa(dmThonXomDTO.getMoTaThon());
         dmThonXom.setMaTinh("");
         dmThonXom.setMaHuyen("");
         dmThonXom.setMaXa("");
@@ -139,12 +149,4 @@ public class DmThonXomController {
         return "redirect:/dm-thonxom/list";
     }
 
-    /*Chức năng: Tìm kiếm => Trả về danh sách theo từ khóa tìm được*/
-    @RequestMapping(value = "listSearch", method = RequestMethod.GET)
-    public String listThonXomByWord(@RequestParam("search") Optional<String> search, Pageable pageable, Model model) {
-        Page<DmThonXom> dmThonXoms;
-        dmThonXoms = dmThonXomService.findAllByMaTinhOrMaHuyenOrMaXa(search.get(), pageable);
-        model.addAttribute("DmThonXoms", dmThonXoms);
-        return "DmThonXom/DmThonXomList";
-    }
 }

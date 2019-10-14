@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DmThonXomService {
     List<DmThonXom> findAll();
+    List<DmThonXom> findThonXomByMaXaPhuong(int idXaPhuong);
 
     DmThonXom findById(int id);
 
@@ -17,5 +18,4 @@ public interface DmThonXomService {
 
     void deleteById(int id);
 
-    Page<DmThonXom> findAllByMaTinhOrMaHuyenOrMaXa(String name, Pageable pageable);
 }

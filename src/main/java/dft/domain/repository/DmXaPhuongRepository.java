@@ -10,5 +10,5 @@ import java.util.List;
 public interface DmXaPhuongRepository {
     List<DmXaPhuong> findAll();
 
-    List<DmXaPhuong> findByMaQuanHuyen (@Param("maTinh") String maTinh,@Param("maQuanHuyen") String maQuanHuyen);
+    List<DmXaPhuong> findByMaQuanHuyen (@Param("maQuanHuyen") String maQuanHuyen);
 }

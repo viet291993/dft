@@ -7,9 +7,9 @@
 
     <resultMap id="dmThonXom" type="DmThonXom">
         <id property="id" column="thon_id"/>
-        <result property="maThon" column="thon_ma"/>
-        <result property="tenThon" column="thon_ten"/>
-        <result property="moTaThon" column="thon_moTaThon"/>
+        <result property="ma" column="thon_ma"/>
+        <result property="ten" column="thon_ten"/>
+        <result property="moTa" column="thon_moTaThon"/>
         <result property="maTinh" column="thon_maTinh"/>
         <result property="maHuyen" column="thon_maHuyen"/>
         <result property="maXa" column="thon_maXa"/>
@@ -70,4 +70,38 @@
                 ID = #{dmThonXomId}
         ]]>
     </delete>
+
+    <select id="findThonXomByMaXaPhuong" parameterType="int" resultMap="dmThonXom">
+        <![CDATA[
+            SELECT ]]>
+                    <include refid="dmThonXom_Select"></include>
+        <![CDATA[
+            FROM
+                  DM_THON_XOM
+            WHERE
+                  MA_XA = #{idXaPhuong}
+            ]]>
+    </select>
+
+    <insert id="create" parameterType="dmThonXom">
+    <![CDATA[
+        INSERT INTO DM_QUAN_HUYEN
+        (
+        ]]>
+                 <include refid="dmThonXom_Select"/>
+    <![CDATA[
+        )
+        VALUES
+        (
+            HIBERNATE_SEQUENCE.nextval,
+            #{maThon},
+            #{tenThon},
+            #{moTaThon},
+            #{maTinh},
+            #{maHuyen},
+            #{maXa},
+            #{trangThai}
+        )
+    ]]>
+    </insert>
 </mapper>
