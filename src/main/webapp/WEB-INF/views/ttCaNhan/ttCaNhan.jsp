@@ -3,6 +3,7 @@
 <head>
     <title>Thông tin cá nhân</title>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/app/css/ttCaNhanCSS/ttCaNhanCSS.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <div>
@@ -24,12 +25,15 @@
                 <form:radiobutton path="gioiTinh.id" value="2" name="gt"/> Nữ
                 <br>
 
-                Quận huyện: <form:select path="ttHuyen.id" items="${lstDmQuanHuyens}" itemLabel="ten" itemValue="id"/>
-<%--                <form:select path="" items="${lstDmTinhs}" itemLabel="ten" itemValue="id"/>--%>
-<%--                <form:select path="" items="${lstDmThonXoms}" itemLabel="ten" itemValue="id"/>--%>
+                Tỉnh thành phố: <form:select path="ttTinh.id" items="${lstDmTinhs}" itemLabel="ten" itemValue="id" class="cboTinh"/>
+                Quận huyện: <form:select path="ttHuyen.id" class="cboQuanHuyen"/>
+                Xã phường: <form:select path="ttXa.id" class="cboXaPhuong"/>
+                Thôn xóm: <form:select path="ttThonXom.id" class="cboThonXom"/>
 
+                <br>
                 <button name="btnThem">Thêm</button>
             </form:form>
+<%--            <span class="errors_message">${xoaError}</span>--%>
         </div>
 
         <div>
@@ -37,30 +41,26 @@
                 <tr>
                     <th>STT</th>
                     <th>Họ tên</th>
+                    <td>Mã y tế cá nhân</td>
                     <th>Nam</th>
                     <th>Nữ</th>
-                    <th>Tỉnh</th>
-                    <th>Huyện</th>
-                    <th>Xã</th>
-                    <th>Thôn xóm</th>
+                    <th>Địa chỉ</th>
                 </tr>
 
                 <c:forEach items="${lstTtCaNhanDTOs}" var="t" varStatus="i">
                     <tr>
                         <td>${i.index+1}</td>
                         <td>${t.hoTen}</td>
+                        <td>${t.maYTeCaNhan}</td>
                         <td>${t.gioiTinh.id == 1 ? t.ngaySinh : ''}</td>
                         <td>${t.gioiTinh.id == 2 ? t.ngaySinh : ''}</td>
-<%--                        <td>${t.ttTinh.ten}</td>--%>
-<%--                        <td>${t.ttHuyen.ten}</td>--%>
-<%--                        <td>${t.ttXa.ten}</td>--%>
-<%--                        <td>${t.ttThonXom.ten}</td>--%>
+                        <td>${t.ttThonXom.tenThon} - ${t.ttXa.ten} - ${t.ttHuyen.ten} - ${t.ttTinh.ten}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/" method="post">
+                            <form:form action="${pageContext.request.contextPath}/ttCaNhan/" method="post">
                                 <input type="hidden" value="${t.id}" name="txtId">
                                 <button name="btnSua">Sửa</button> |
-                                <button name="btnXoassss">Xóa</button>
-                            </form>
+                                <button name="btnXoa">Xóa</button>
+                            </form:form>
                         </td>
                     </tr>
                 </c:forEach>
@@ -69,4 +69,5 @@
     </div>
 
 </body>
+<script src="${pageContext.request.contextPath}/resources/app/js/ttCaNhanJS/ttCaNhanJS.js"></script>
 </html>

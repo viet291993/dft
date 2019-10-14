@@ -6,18 +6,17 @@ public class TtCaNhan {
     private String hoTen;
     private DMGioiTinh gioiTinh;
     private Integer ngaySinh;
-//    private DmTinhTP ttTinh;
+    private DmTinhTP ttTinh;
     private DmQuanHuyen ttHuyen;
-//    private DmXaPhuong ttXa;
-//    private DmThonXom ttThonXom;
-//    private DmTinhTP htTinh;
-//    private DmQuanHuyen htHuyen;
-//    private DmXaPhuong htXa;
-//    private DmThonXom htThonXom;
-//    private boolean trangThai;
+    private DmXaPhuong ttXa;
+    private DmThonXom ttThonXom;
+    private DmTinhTP htTinh;
+    private DmQuanHuyen htHuyen;
+    private DmXaPhuong htXa;
+    private DmThonXom htThonXom;
+    private boolean trangThai;
 
     //<editor-fold defaultstate="collapsed" desc="set và get">
-
     public Long getId() {
         return id;
     }
@@ -57,15 +56,15 @@ public class TtCaNhan {
     public void setNgaySinh(Integer ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
-//
-//    public DmTinhTP getTtTinh() {
-//        return ttTinh;
-//    }
-//
-//    public void setTtTinh(DmTinhTP ttTinh) {
-//        this.ttTinh = ttTinh;
-//    }
-//
+
+    public DmTinhTP getTtTinh() {
+        return ttTinh;
+    }
+
+    public void setTtTinh(DmTinhTP ttTinh) {
+        this.ttTinh = ttTinh;
+    }
+
     public DmQuanHuyen getTtHuyen() {
         return ttHuyen;
     }
@@ -73,61 +72,61 @@ public class TtCaNhan {
     public void setTtHuyen(DmQuanHuyen ttHuyen) {
         this.ttHuyen = ttHuyen;
     }
-//
-//    public DmXaPhuong getTtXa() {
-//        return ttXa;
-//    }
-//
-//    public void setTtXa(DmXaPhuong ttXa) {
-//        this.ttXa = ttXa;
-//    }
-//
-//    public DmThonXom getTtThonXom() {
-//        return ttThonXom;
-//    }
-//
-//    public void setTtThonXom(DmThonXom ttThonXom) {
-//        this.ttThonXom = ttThonXom;
-//    }
-//
-//    public DmTinhTP getHtTinh() {
-//        return htTinh;
-//    }
-//
-//    public void setHtTinh(DmTinhTP htTinh) {
-//        this.htTinh = htTinh;
-//    }
-//
-//    public DmQuanHuyen getHtHuyen() {
-//        return htHuyen;
-//    }
-//
-//    public void setHtHuyen(DmQuanHuyen htHuyen) {
-//        this.htHuyen = htHuyen;
-//    }
-//
-//    public DmXaPhuong getHtXa() {
-//        return htXa;
-//    }
-//
-//    public void setHtXa(DmXaPhuong htXa) {
-//        this.htXa = htXa;
-//    }
-//
-//    public DmThonXom getHtThonXom() {
-//        return htThonXom;
-//    }
-//
-//    public void setHtThonXom(DmThonXom htThonXom) {
-//        this.htThonXom = htThonXom;
-//    }
-//
-//    public boolean isTrangThai() {
-//        return trangThai;
-//    }
-//
-//    public void setTrangThai(boolean trangThai) {
-//        this.trangThai = trangThai;
-//    }
+
+    public DmXaPhuong getTtXa() {
+        return ttXa;
+    }
+
+    public void setTtXa(DmXaPhuong ttXa) {
+        this.ttXa = ttXa;
+    }
+
+    public DmThonXom getTtThonXom() {
+        return ttThonXom;
+    }
+
+    public void setTtThonXom(DmThonXom ttThonXom) {
+        this.ttThonXom = ttThonXom;
+    }
+
+    public DmTinhTP getHtTinh() {
+        return htTinh;
+    }
+
+    public void setHtTinh(DmTinhTP htTinh) {
+        this.htTinh = htTinh;
+    }
+
+    public DmQuanHuyen getHtHuyen() {
+        return htHuyen;
+    }
+
+    public void setHtHuyen(DmQuanHuyen htHuyen) {
+        this.htHuyen = htHuyen;
+    }
+
+    public DmXaPhuong getHtXa() {
+        return htXa;
+    }
+
+    public void setHtXa(DmXaPhuong htXa) {
+        this.htXa = htXa;
+    }
+
+    public DmThonXom getHtThonXom() {
+        return htThonXom;
+    }
+
+    public void setHtThonXom(DmThonXom htThonXom) {
+        this.htThonXom = htThonXom;
+    }
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
 //</editor-fold>
 }
