@@ -10,7 +10,7 @@
         <result property="ma" column="Q_ma" />
         <result property="ten" column="Q_ten" />
         <result property="moTa" column="Q_maTo" />
-        <result property="maTinh" column="Q_maTinh"/>
+        <result property="maTinh" column="Q_maTinh" />
         <result property="cap" column="Q_cap" />
         <result property="trangThai" column="Q_trangThai" />
     </resultMap>
