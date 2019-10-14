@@ -22,6 +22,11 @@ public class DmThonXomServiceImpl implements DmThonXomService {
     }
 
     @Override
+    public List<DmThonXom> findXaPhuongByMaXaPhuong(String maXaPhuong) {
+        return dmThonXomRepository.findThonXomByMaXaPhuong(maXaPhuong);
+    }
+
+    @Override
     public DmThonXom findById(int id) {
         return dmThonXomRepository.findById(id);
     }
@@ -42,8 +47,5 @@ public class DmThonXomServiceImpl implements DmThonXomService {
         dmThonXomRepository.deleteById(id);
     }
 
-    @Override
-    public Page<DmThonXom> findAllByMaTinhOrMaHuyenOrMaXa(String name, Pageable pageable) {
-        return dmThonXomRepository.findAllByMaTinhOrMaHuyenOrMaXa(name, pageable);
-    }
+
 }
