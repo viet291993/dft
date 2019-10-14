@@ -73,11 +73,12 @@
         FROM
             DM_XA_PHUONG
         WHERE
-            MA_TINH = #{maTinh}
             MA_HUYEN = #{maQuanHuyen}
 
     ]]>
     </select>
+
+
 
     <!--<insert id="create" parameterType="Todo">
     <![CDATA[

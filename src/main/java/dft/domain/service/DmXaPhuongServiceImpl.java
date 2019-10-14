@@ -17,4 +17,15 @@ public class DmXaPhuongServiceImpl implements DmXaPhuongService{
     public List<DmXaPhuong> findAll() {
         return dmXaPhuongRepository.findAll();
     }
+
+    @Override
+    public List<DmXaPhuong> findByMaQuanHuyen(String maQuanHuyen){
+        try {
+            return dmXaPhuongRepository.findByMaQuanHuyen(maQuanHuyen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
