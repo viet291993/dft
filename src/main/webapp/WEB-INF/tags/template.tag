@@ -27,7 +27,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">
+    <a href="http://localhost:8080" class="navbar-brand">
         <img src="${pageContext.request.contextPath}/resources/app/images/logo.jpg" alt="" width="40px"
              class="rounded-circle">Trang chủ
     </a>

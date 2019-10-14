@@ -11,4 +11,12 @@ public interface DmXaPhuongRepository {
     List<DmXaPhuong> findAll();
 
     List<DmXaPhuong> findByMaQuanHuyen (@Param("maQuanHuyen") String maQuanHuyen);
+
+    DmXaPhuong findById(long id);
+
+    void deleteById(int id);
+
+    void create(DmXaPhuong dmXaPhuong);
+
+    void update(DmXaPhuong dmXaPhuong);
 }

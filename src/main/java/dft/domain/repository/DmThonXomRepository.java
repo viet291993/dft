@@ -23,4 +23,6 @@ public interface DmThonXomRepository  {
 
     void deleteById(int id);
 
+
+
 }

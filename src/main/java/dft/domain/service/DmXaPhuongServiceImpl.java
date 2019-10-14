@@ -28,4 +28,23 @@ public class DmXaPhuongServiceImpl implements DmXaPhuongService{
         }
 
     }
+    @Override
+    public DmXaPhuong findById(long id){
+        return dmXaPhuongRepository.findById(id);
+    }
+
+    @Override
+    public void deleteById(int id){
+        dmXaPhuongRepository.deleteById(id);
+    }
+
+    @Override
+    public void create(DmXaPhuong dmXaPhuong) {
+        dmXaPhuongRepository.create(dmXaPhuong);
+    }
+
+    @Override
+    public void update(DmXaPhuong dmXaPhuong) {
+        dmXaPhuongRepository.update(dmXaPhuong);
+    }
 }
