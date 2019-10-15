@@ -1,11 +1,16 @@
 package dft.domain.service;
 
 import dft.domain.model.DmQuanHuyen;
+import dft.domain.model.DmQuanHuyenCriteria;
 import dft.domain.repository.DmQuanHuyenRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -14,6 +19,19 @@ public class DmQuanHuyenServiceImpl implements DmQuanHuyenService {
 
     @Inject
     DmQuanHuyenRepository dmQuanHuyenRepository;
+
+
+    @Override
+    public Page<DmQuanHuyen> searchDmQuanHuyen(DmQuanHuyenCriteria criteria, Pageable pageable) {
+        long total = dmQuanHuyenRepository.countByCriteria(criteria);
+        List<DmQuanHuyen> dmQuanHuyens;
+        if (0 < total) {
+            dmQuanHuyens = dmQuanHuyenRepository.findPageByCriteria(criteria, pageable);
+        } else {
+            dmQuanHuyens = Collections.emptyList();
+        }
+        return new PageImpl<>(dmQuanHuyens, pageable, total);
+    }
 
     // Lấy danh sách Quận Huyện
     @Override
