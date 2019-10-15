@@ -6,11 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Thêm Quận Huyện</title>
-</head>
-<body>
+<%@taglib prefix="l" tagdir="/WEB-INF/tags" %>
+<l:template title="Thêm Quận Huyện">
+    <jsp:attribute name="content">
    <h2>Thêm quận huyện</h2>
     <form:form  action="${pageContext.request.contextPath}/QuanHuyen/Them" method="post" modelAttribute="DmQuanHuyen">
        <form:label path="ma">Mã</form:label>
@@ -28,5 +26,5 @@
         <form:radiobutton path="trangThai" value="0"/><br>
         <form:button>Thêm mới</form:button>
     </form:form>
-</body>
-</html>
+    </jsp:attribute>
+</l:template>

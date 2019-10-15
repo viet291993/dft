@@ -49,12 +49,7 @@ public class HelloController {
     public List<DmTinhTP> listDmTinhTP() {
         return dmTinhTPService.findAll();
     }
-//
-//    // Lấy danh sách Tỉnh lên Seclect
-//    @ModelAttribute("litsTinhTP_Selects")
-//    public List<DmQuanHuyen> listQuanHuyen() {
-//        return dmQuanHuyenService.findByMaTinh(tt);
-//    }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Locale locale, Model model, @ModelAttribute("TtCaNhan") TtCaNhan ttCaNhan) {

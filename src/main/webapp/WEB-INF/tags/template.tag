@@ -11,7 +11,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app/javascript/js.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -32,8 +31,8 @@
              class="rounded-circle">Trang chủ
     </a>
     <ul class="navbar-nav">
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Tỉnh</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/#" class="nav-link">Quận huyện</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/Tinh" class="nav-link">Tỉnh</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/QuanHuyen/" class="nav-link">Quận huyện</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dmxaphuong" class="nav-link">Xã phường</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dm-thonxom/list" class="nav-link">Thôn xóm</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/ttCaNhan/" class="nav-link">Thông tin cá nhân</a></li>
@@ -60,35 +59,16 @@
         <!-- page content -->
         <jsp:invoke fragment="content"/>
         <!-- page content -->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
     </div>
 </div>
-<div class="footer">
+<%--<div class="footer">
     <div class="container">
         <p style="text-align: center; color: #b4acac;">Bản dự án demo</p>
     </div>
-</div>
+</div>--%>
 </body>
 <footer>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app/javascript/js.js"></script>
     <!-- footer -->
     <jsp:invoke fragment="footer"/>
     <!-- /footer -->
