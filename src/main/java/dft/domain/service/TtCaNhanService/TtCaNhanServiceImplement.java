@@ -16,8 +16,8 @@ public class TtCaNhanServiceImplement implements TtCaNhanService {
 
     //<editor-fold defaultstate="collapsed" desc="find all tất cả tt cá nhân, tỉnh, huyện, xã, thôn">
     @Override
-    public List<TtCaNhan> findAllTtCaNhan(int stt) {
-        return ttCaNhanRepository.findAllTtCaNhan(stt);
+    public List<TtCaNhan> findAllTtCaNhan(Long thonXomId, int trang) {
+        return ttCaNhanRepository.findAllTtCaNhan(thonXomId, trang);
     }
 
     @Override
@@ -67,12 +67,6 @@ public class TtCaNhanServiceImplement implements TtCaNhanService {
     @Override
     public int findOneByMaYTeCaNhan(String maYTeCaNhan) {
         return ttCaNhanRepository.findOneByMaYTeCaNhan(maYTeCaNhan);
-    }
-
-
-    @Override
-    public int findOneTtThuongTich(Long ttCaNhanId) {
-        return ttCaNhanRepository.findOneTtThuongTich(ttCaNhanId);
     }
 
     @Override

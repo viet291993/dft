@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface TtCaNhanRepository {
     //<editor-fold defaultstate="collapsed" desc="lấy ra danh mục tỉnh, huyện, xã, thôn, thông tin cá nhân">
-    @Select("select * from (\n" +
-            "    select row_number() over (order by null) STT,\n" +
+    @Select("select * from ( \n" +
+            "    select row_number() over (order by HO_TEN asc) STT,\n" +
             "           id,\n" +
             "           HO_TEN,\n" +
             "           MA_Y_TE_CA_NHAN,\n" +
@@ -18,8 +18,11 @@ public interface TtCaNhanRepository {
             "           TT_HUYEN_ID,\n" +
             "           TT_XA_ID,\n" +
             "           TT_THON_XOM_ID\n" +
-            "    from TT_CA_NHAN) T1\n" +
-            "where T1.STT > #{stt} and ROWNUM <= 10")
+            "    from TT_CA_NHAN\n" +
+            "    where TT_THON_XOM_ID = #{param1}) T1\n" +
+            "where\n" +
+            "      T1.STT > #{param2}*10 and\n" +
+            "      ROWNUM <= 10")
     @Results(value = {
             @Result(property = "id", column = "id"),
             @Result(property = "hoTen", column = "ho_ten"),
@@ -31,7 +34,7 @@ public interface TtCaNhanRepository {
             @Result(property = "ttXa", javaType = DmXaPhuong.class, column = "TT_XA_ID", one = @One(select = "findXaPhuongById")),
             @Result(property = "ttThonXom", javaType = DmThonXom.class, column = "TT_THON_XOM_ID", one = @One(select = "findThonXomById"))
     })
-    public List<TtCaNhan> findAllTtCaNhan(int stt);
+    public List<TtCaNhan> findAllTtCaNhan(Long thonXomId, int trang);
 
     @Select("select * from DM_TINH_TP")
     public List<DmTinhTP> findAllTinh();
@@ -70,14 +73,20 @@ public interface TtCaNhanRepository {
                 "MA_Y_TE_CA_NHAN, " +
                 "NGAY_SINH, " +
                 "GIOI_TINH_ID, " +
-                "TT_TINH_ID)\n" +
+                "TT_TINH_ID, " +
+                "tt_huyen_id, " +
+                "tt_xa_id, " +
+                "tt_thon_xom_id)\n" +
             "values (" +
                 "HIBERNATE_SEQUENCE.nextval, " +
                 "#{hoTen}, " +
                 "#{maYTeCaNhan}, " +
                 "#{ngaySinh}, " +
                 "#{gioiTinh.id}, " +
-                "#{ttTinh.id})"
+                "#{ttTinh.id}, " +
+                "#{ttHuyen.id}, " +
+                "#{ttXa.id}, " +
+                "#{ttThonXom.id})"
     )
     public void insert(TtCaNhan ttCaNhan);
 
@@ -86,7 +95,10 @@ public interface TtCaNhanRepository {
                 "MA_Y_TE_CA_NHAN = #{maYTeCaNhan}, " +
                 "NGAY_SINH = #{ngaySinh}, " +
                 "GIOI_TINH_ID = #{gioiTinh.id}, " +
-                "TT_TINH_ID = #{ttTinh.id}\n" +
+                "TT_TINH_ID = #{ttTinh.id}, " +
+                "tt_huyen_id = #{ttHuyen.id}, " +
+                "tt_xa_id = #{ttXa.id}, " +
+                "tt_thon_xom_id = #{ttThonXom.id}\n" +
             "where ID = #{id}")
     public void update(TtCaNhan ttCaNhan);
 
@@ -123,14 +135,11 @@ public interface TtCaNhanRepository {
                 "TT_THON_XOM_ID " +
             "from tt_ca_nhan " +
             "where id = #{id}")
-    @ResultMap("findAllTtCaNhan-int")
-    // lấy đoạn map @Results của findAllTtCaNhan(int stt)
+    @ResultMap("findAllTtCaNhan-Long-int")
+    // lấy đoạn map @Results của findAllTtCaNhan(int trang, Long thonXomId)
     // int là kiểu tham số của phương thức findAllTtCaNhan
     // nếu không có tham số thì là void
     public TtCaNhan findOneById(Long id);
-
-    @Select("select count(*) from tt_thuongtich where tt_ca_nhan_id = #{ttCaNhanId}")
-    public int findOneTtThuongTich(Long ttCaNhanId);
     //</editor-fold>
 
     // tên tham số #{} đặt thế nào cũng đc

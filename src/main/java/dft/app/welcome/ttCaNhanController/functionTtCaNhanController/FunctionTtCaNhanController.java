@@ -50,14 +50,14 @@ public class FunctionTtCaNhanController {
     }
 
     // trả về ngày sinh nếu không có lỗi ở input ngày sinh và mã y tế các nhân khi bấm nút thêm hoặc nút sửa
-    private static Date kiemTraNgaySinhVaMaYTeCaNhan(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean isUpdate) {
+    private static Date kiemTraNgaySinhVaMaYTeCaNhan(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean showDanhSach) {
         Date nsDate = kiemTraNgayThangCoTonTai(ttCaNhanDTO, br, model, ttCaNhanService);
         if (nsDate == null) {
             return null;
         }
 
         // nếu mà mã y tế không thay đổi j khi update thì không cần kiểm tra trùng
-        if (isUpdate) {
+        if (showDanhSach) {
             String maYTeCaNhan = ttCaNhanService.findMaYTeCaNhanById(ttCaNhanDTO.getId());
             if (maYTeCaNhan.equals(ttCaNhanDTO.getMaYTeCaNhan())) {
                 return nsDate;
@@ -72,13 +72,13 @@ public class FunctionTtCaNhanController {
     }
 
     // kiểm tra toàn bộ các input và trả về 1 tt cá nhân nếu các input được nhập đúng
-    public static TtCaNhan kiemTra(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean isUpdate) {
+    public static TtCaNhan kiemTra(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean showDanhSach) {
         if (br.hasErrors()) {
             return null;
         }
 
         // kiểm tra ngày sinh, mã y tế cá nhân và chuyển enrity thành dto
-        TtCaNhan ttCaNhan = chuyenEntityThanhDTO(ttCaNhanDTO, br, model, ttCaNhanService, isUpdate);
+        TtCaNhan ttCaNhan = chuyenEntityThanhDTO(ttCaNhanDTO, br, model, ttCaNhanService, showDanhSach);
         if (ttCaNhan == null) {
             return null;
         }
@@ -89,8 +89,8 @@ public class FunctionTtCaNhanController {
 
     //<editor-fold defaultstate="collapsed" desc="hàm chuyển đổi">
     // chuyển tt cá nhân thành tt cá nhân dto
-    private static TtCaNhan chuyenEntityThanhDTO(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean isUpdate) {
-        Date nsDate = kiemTraNgaySinhVaMaYTeCaNhan(ttCaNhanDTO, br, model, ttCaNhanService, isUpdate);
+    private static TtCaNhan chuyenEntityThanhDTO(TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model, TtCaNhanService ttCaNhanService, boolean showDanhSach) {
+        Date nsDate = kiemTraNgaySinhVaMaYTeCaNhan(ttCaNhanDTO, br, model, ttCaNhanService, showDanhSach);
         if (nsDate == null) {
             return null;
         }
@@ -146,31 +146,39 @@ public class FunctionTtCaNhanController {
     //</editor-fold>
 
     // load lại các combo box, bảng trên trang
-    public static void loadLaiTrang(Model model, boolean hasErrors, TtCaNhanService ttCaNhanService, boolean isUpdate) {
+    public static void loadLaiTrang(Model model, boolean xoaTrangForm, TtCaNhanService ttCaNhanService, boolean showDanhSach, TtCaNhanDTO ttCaNhanDTO) {
         // tạo 1 cái model attribute chứa ttCaNhan rỗng nếu không có lỗi
-        if (!hasErrors) {
+        if (xoaTrangForm) {
             model.addAttribute("ttCaNhanDTO", new TtCaNhanDTO());
         }
 
         // tạo 1 cái request attribute chứa danh sách tỉnh thành phố để đưa vào combobox
         model.addAttribute("lstDmTinhs", ttCaNhanService.findAllTinh());
 
-        // tạo 1 cái request attribute chứa danh sách quận huyện để đưa vào combobox
-//        model.addAttribute("lstDmQuanHuyens", ttCaNhanService.findAllQuanHuyen());
+        if (ttCaNhanDTO.getTtHuyen() != null) {
+            // lấy mã tỉnh vì tỉnh 1-n huyện và nối vs nhau bằng mã chứ không phải id
+            String maTinh = ttCaNhanService.findMaTinh((long) ttCaNhanDTO.getTtTinh().getId());
 
-        // tạo 1 cái request attribute chứa danh sách quận xã phường để đưa vào combobox
-//        model.addAttribute("lstDmXaPhuongs", ttCaNhanService.findAllXaPhuong());
-
-        // tạo 1 cái request attribute chứa danh sách thôn xóm để đưa vào combobox
-//        model.addAttribute("lstDmThonXoms", ttCaNhanService.findAllThonXom());
-
-        // nếu bấm nút update, có lỗi validate thì không load lại danh sách tt cá nhân vì không quay lại màn hình ttCaNhan.jsp
-        // nếu bấm nút update, không lỗi validate, quay lại màn hình ttCaNha.jsp và load lại các combobox và danh sách tt cá nhân
-        if (hasErrors && isUpdate) {
-            return;
+            // tạo 1 cái request attribute chứa danh sách quận huyện để đưa vào combobox
+            model.addAttribute("lstDmQuanHuyens", ttCaNhanService.findAllQuanHuyen(maTinh));
         }
 
-        // tạo 1 cái request attribute chứa danh sách tt cá nhân để đưa về trang ttCaNhan.jsp
-        model.addAttribute("lstTtCaNhanDTOs", chuyenEntityThanhDTO(ttCaNhanService.findAllTtCaNhan(0)));
+        if (ttCaNhanDTO.getTtXa() != null) {
+            String maQuanHuyen = ttCaNhanService.findMaQuanHuyen((long) ttCaNhanDTO.getTtHuyen().getId());
+
+            // tạo 1 cái request attribute chứa danh sách quận xã phường để đưa vào combobox
+            model.addAttribute("lstDmXaPhuongs", ttCaNhanService.findAllXaPhuong(maQuanHuyen));
+        }
+
+        if (ttCaNhanDTO.getTtThonXom() != null) {
+            // tạo 1 cái request attribute chứa danh sách thôn xóm để đưa vào combobox
+            model.addAttribute("lstDmThonXoms", ttCaNhanService.findAllThonXom(String.valueOf(ttCaNhanDTO.getTtXa().getId())));
+        }
+
+        if (showDanhSach) {
+            // tạo 1 cái request attribute chứa danh sách tt cá nhân để đưa về trang ttCaNhan.jsp
+            System.out.println((long) ttCaNhanDTO.getTtThonXom().getId() + "alo alo");
+            model.addAttribute("lstTtCaNhanDTOs", chuyenEntityThanhDTO(ttCaNhanService.findAllTtCaNhan((long) ttCaNhanDTO.getTtThonXom().getId(), 0)));
+        }
     }
 }
