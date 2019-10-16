@@ -11,13 +11,28 @@ import java.util.Date;
  * Danh mục thôn xóm
  */
 public class DmThonXom implements Serializable {
+    /* Thuộc tính: Id thôn, xóm*/
     private int id;
+
+    /* Thuộc tính: mã thôn, xóm*/
     private String ma;
+
+    /* Thuộc tính: tên thôn, xóm*/
     private String ten;
+
+    /* Thuộc tính: mô tả thôn, xóm*/
     private String moTa;
+
+    /* Thuộc tính: mã tỉnh*/
     private String maTinh;
+
+    /* Thuộc tính: mã huyện*/
     private String maHuyen;
+
+    /* Thuộc tính: mã xã*/
     private String maXa;
+
+    /* Thuộc tính: trạng thái hoạt động của thôn xóm*/
     private int trangThai;
 
     public DmThonXom() {

@@ -4,63 +4,63 @@
 <jsp:attribute name="content">
     <div class="container">
     <h1>Tạo danh sách thôn xóm mới</h1>
-    <form:form action="${pageContext.request.contextPath}/create" modelAttribute="dmThonXomDTO">
-            <table class="table">
-                <tr>
-                    <td>Thôn</td>
-                    <td>
-                        <form:input path="ten"/>
-                        <form:hidden path="id"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mô tả thôn</td>
-                    <td>
-                        <form:input path="moTaThon"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tỉnh</td>
-                    <td>
-                        <form:select path="tinh" id="tinh">
-                            <form:option disabled="true" value="" label="Chọn Tỉnh/Thành phố"/>
-                            <form:options items="${dmTinhTP_List}" itemValue="ma" itemLabel="ten"/>
-                        </form:select>
-                    </td>
-                </tr>
+    <form:form action="${pageContext.request.contextPath}/create" modelAttribute="dmThonXom" method="post">
+             <table class="table">
+                 <tr>
+                     <td>Thôn</td>
+                     <td>
+                         <form:input path="ten"/>
+                         <form:hidden path="id"/>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Mô tả thôn</td>
+                     <td>
+                         <form:input path="moTa"/>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Tỉnh/TP</td>
+                     <td>
+                    <form:select path="maTinh" id="tinh" >
+                        <form:option disabled="true" value="" label="> Chọn Tỉnh/Thành phố"/>
+                        <form:options items="${tinhs}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
+                     </td>
+                 </tr>
 
-                <tr>
-                    <td>Huyện</td>
-                    <td>
-                        <form:select path="huyen" id="huyen">
-                            <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
-                            <form:options items="${dmQuanHuyen_List}" itemValue="ma" itemLabel="ten"/>
-                        </form:select>
-                    </td>
-                </tr>
+                 <tr>
+                     <td>Huyện/Quận</td>
+                     <td>
+                    <form:select path="maHuyen" id="quanHuyen">
+                        <form:option disabled="true" value="" label="> Chọn Quận/Huyện"/>
+                        <form:options items="${huyens}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
+                     </td>
+                 </tr>
 
-                <tr>
-                    <td>Xã</td>
-                    <td>
-                        <form:select path="xa" id="xa">
-                            <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
-                            <form:options items="${dmXaPhuong_List}" itemValue="ma" itemLabel="ten"/>
-                        </form:select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Trạng thái hoạt động</td>
-                    <td>
-                        <form:radiobutton path="trangThai" value="1"/>Đang hoạt động
-                        <form:radiobutton path="trangThai" value="0"/>Dừng hoạt động<br>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <form:button type="submit">Create</form:button>
-                    </td>
-                </tr>
+                 <tr>
+                     <td>Xã/Phường</td>
+                     <td>
+                    <form:select path="maXa" id="phuongXa">
+                        <form:option disabled="true" value="" label="> Chọn Xã/Phường"/>
+                        <form:options items="${xas}" itemValue="ma" itemLabel="ten"/>
+                    </form:select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Trạng thái hoạt động</td>
+                     <td>
+                         <form:radiobutton path="trangThai" value="1"/>Đang hoạt động
+                         <form:radiobutton path="trangThai" value="0"/>Dừng hoạt động<br>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td></td>
+                     <td>
+                         <form:button type="submit">Create</form:button>
+                     </td>
+                 </tr>
 
             </table>
     </form:form>

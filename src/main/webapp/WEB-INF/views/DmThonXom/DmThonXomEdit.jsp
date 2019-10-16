@@ -25,7 +25,7 @@
                 <td>
                     <form:select path="maTinh" id="tinh" >
                         <form:option disabled="true" value="" label="> Chọn Tỉnh/Thành phố"/>
-                        <form:options items="tinh" itemValue="ma" itemLabel="ten"/>
+                        <form:options items="${tinhs}" itemValue="ma" itemLabel="ten"/>
                     </form:select>
                 </td>
             </tr>
@@ -35,7 +35,7 @@
                 <td>
                     <form:select path="maHuyen" id="quanHuyen">
                         <form:option disabled="true" value="" label="> Chọn Quận/Huyện"/>
-                        <form:options items="huyen" itemValue="ma" itemLabel="ten"/>
+                        <form:options items="${huyens}" itemValue="ma" itemLabel="ten"/>
                     </form:select>
                 </td>
             </tr>
@@ -45,7 +45,7 @@
                 <td>
                     <form:select path="maXa" id="phuongXa">
                         <form:option disabled="true" value="" label="> Chọn Xã/Phường"/>
-                        <form:options items="xa" itemValue="ma" itemLabel="ten"/>
+                        <form:options items="${xas}" itemValue="ma" itemLabel="ten"/>
                     </form:select>
                 </td>
             </tr>

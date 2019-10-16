@@ -37,6 +37,18 @@
             ]]>
     </select>
 
+    <select id="findThonXomByMaXaPhuong" parameterType="int" resultMap="dmThonXom">
+        <![CDATA[
+            SELECT ]]>
+        <include refid="dmThonXom_Select"></include>
+        <![CDATA[
+            FROM
+                  DM_THON_XOM
+            WHERE
+                  MA_XA = #{idXaPhuong}
+            ]]>
+    </select>
+
     <select id="findById" parameterType="DmThonXom" resultMap="dmThonXom">
         <![CDATA[
             SELECT
@@ -51,6 +63,28 @@
             WHERE ID= #{dmThonXomId}
         ]]>
     </select>
+
+    <insert id="create" parameterType="DmThonXom">
+        <![CDATA[
+        INSERT INTO DM_QUAN_HUYEN
+        (
+        ]]>
+        <include refid="dmThonXom_Select"/>
+        <![CDATA[
+        )
+        VALUES
+        (
+            HIBERNATE_SEQUENCE.nextval,
+            #{ma},
+            #{ten},
+            #{moTa},
+            #{maTinh},
+            #{maHuyen},
+            #{maXa},
+            #{trangThai}
+        )
+    ]]>
+    </insert>
 
     <update id="update" parameterType="DmThonXom" >
         <![CDATA[
@@ -75,37 +109,34 @@
         ]]>
     </delete>
 
-    <select id="findThonXomByMaXaPhuong" parameterType="int" resultMap="dmThonXom">
+    <select id="findPageByCriteria"  resultMap="dmThonXom">
         <![CDATA[
             SELECT ]]>
-                    <include refid="dmThonXom_Select"></include>
+                <include refid="dmThonXom_Select"></include>
         <![CDATA[
             FROM
-                  DM_THON_XOM
+                DM_THON_XOM
             WHERE
-                  MA_XA = #{idXaPhuong}
-            ]]>
+                MA LIKE '%' || #{criteria.ten} || '%' OR
+                TEN LIKE '%' || #{criteria.ten} || '%'
+            ORDER BY ID
+                OFFSET  #{pageable.offset}
+            ROWS FETCH NEXT
+                 #{pageable.pageSize}
+            ROWS ONLY
+         ]]>
     </select>
 
-    <insert id="create" parameterType="DmThonXom">
-    <![CDATA[
-        INSERT INTO DM_QUAN_HUYEN
-        (
-        ]]>
-                 <include refid="dmThonXom_Select"/>
-    <![CDATA[
-        )
-        VALUES
-        (
-            HIBERNATE_SEQUENCE.nextval,
-            #{ma},
-            #{ten},
-            #{moTa},
-            #{maTinh},
-            #{maHuyen},
-            #{maXa},
-            #{trangThai}
-        )
+    <select id="countByCriteria"  resultType="long">
+        <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            DM_THON_XOM
+        WHERE
+            MA LIKE '%' || #{criteria.ten} || '%' OR
+            TEN LIKE '%' || #{criteria.ten} || '%'
     ]]>
-    </insert>
+    </select>
+
 </mapper>

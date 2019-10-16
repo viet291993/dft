@@ -31,18 +31,18 @@
                 <th></th>
             </thead>
             <tbody>
-         <c:forEach items="${page.content}" var="QH" varStatus="rowStatus">
+         <c:forEach items="${page.content}" var="ThonXom" varStatus="rowStatus">
             <tr>
                 <td>${(page.number * page.size) + rowStatus.count}</td>
-                <td>${QH.ma}</td>
-                <td>${QH.ten}</td>
-                <td>${QH.moTa}</td>
-                <td>${QH.maTinh}</td>
-                <td>${QH.cap}</td>
-                <td>${QH.trangThai}</td>
+                <td>${ThonXom.ma}</td>
+                <td>${ThonXom.ten}</td>
+                <td>${ThonXom.moTa}</td>
+                <td>${ThonXom.maTinh}</td>
+                <td>${ThonXom.cap}</td>
+                <td>${ThonXom.trangThai}</td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/QuanHuyen/Sua/${QH.id}">Sửa</a>
-                    <a href="${pageContext.request.contextPath}/QuanHuyen/Xoa/${QH.id}">Xóa</a>
+                    <a href="${pageContext.request.contextPath}/QuanHuyen/Sua/${ThonXom.id}">Sửa</a>
+                    <a href="${pageContext.request.contextPath}/QuanHuyen/Xoa/${ThonXom.id}">Xóa</a>
                 </td>
             </tr>
         </c:forEach>
