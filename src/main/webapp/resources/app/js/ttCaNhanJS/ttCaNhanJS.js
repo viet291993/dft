@@ -7,6 +7,8 @@ $(document).ready(function() {
             success : function(response) {
                 // xóa toàn bộ option của select
                 $(".cboQuanHuyen").find("option").remove().end();
+                $(".cboXaPhuong").find("option").remove().end();
+                $(".cboThonXom").find("option").remove().end();
 
                 // đổ option mới vào select
                 $.each(response, function (index, value) {
@@ -27,6 +29,7 @@ $(document).ready(function() {
             success : function(response) {
                 // xóa toàn bộ option của select
                 $(".cboXaPhuong").find("option").remove().end();
+                $(".cboThonXom").find("option").remove().end();
 
                 // đổ option mới vào select
                 $.each(response, function (index, value) {

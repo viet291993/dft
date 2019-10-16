@@ -23,9 +23,16 @@ public class TtCaNhanDTO {
             message = "Vui lòng nhập ngày sinh thep định dạng dd-MM-yyyy")
     private String ngaySinh;
 
+    @NotNull(message = "Vui lòng chọn 1 tỉnh")
     private DmTinhTP ttTinh;
+
+    @NotNull(message = "Vui lòng chọn 1 huyện")
     private DmQuanHuyen ttHuyen;
+
+    @NotNull(message = "Vui lòng chọn 1 xã")
     private DmXaPhuong ttXa;
+
+    @NotNull(message = "Vui lòng chọn 1 thôn")
     private DmThonXom ttThonXom;
 
     //<editor-fold defaultstate="collapsed" desc="get và set">
