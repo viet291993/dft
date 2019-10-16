@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/style.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app/javascript/js.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -33,7 +34,7 @@
     <ul class="navbar-nav">
         <li class="nav-item"><a href="${pageContext.request.contextPath}/Tinh" class="nav-link">Tỉnh</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/QuanHuyen/" class="nav-link">Quận huyện</a></li>
-        <li class="nav-item"><a href="${pageContext.request.contextPath}/dmxaphuong" class="nav-link">Xã phường</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/dmxaphuong/list" class="nav-link">Xã phường</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/dm-thonxom/list" class="nav-link">Thôn xóm</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/ttCaNhan/" class="nav-link">Thông tin cá nhân</a></li>
     </ul>
@@ -61,11 +62,11 @@
         <!-- page content -->
     </div>
 </div>
-<%--<div class="footer">
+<div class="footer">
     <div class="container">
         <p style="text-align: center; color: #b4acac;">Bản dự án demo</p>
     </div>
-</div>--%>
+</div>
 </body>
 <footer>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app/javascript/js.js"></script>
