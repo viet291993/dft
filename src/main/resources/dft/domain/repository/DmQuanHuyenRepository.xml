@@ -128,7 +128,7 @@
     ]]>
     </insert>
 
-    <update id="update" parameterType="dmQuanHuyen">
+    <update statementType="CALLABLE" id="update" parameterType="dmQuanHuyen">
         DECLARE QH_Ma VARCHAR2(255);
         BEGIN
             SELECT MA INTO QH_Ma FROM DM_QUAN_HUYEN WHERE ID = #{id};
