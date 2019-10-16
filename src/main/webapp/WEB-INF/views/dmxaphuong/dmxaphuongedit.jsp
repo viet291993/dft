@@ -7,58 +7,76 @@
 </head>
 <body>
 <div class="container">
-    <h1>Chỉnh sửa danh sách thôn xóm</h1>
-    <form:form action="${pageContext.request.contextPath}/dm-thonxom/update" modelAttribute="dmThonXom" method="post">
+    <h1>Chỉnh sửa danh sách xã phường</h1>
+    <form:form action="${pageContext.request.contextPath}/dmxaphuong/update" modelAttribute="dmXaPhuong" method="post">
         <table class="table">
             <tr>
-                <td>Thôn</td>
+                <td>Mã</td>
                 <td>
-                    <form:input path="ten"/>
+                    <form:input path="ma"/>
                     <form:hidden path="id"/>
                 </td>
             </tr>
             <tr>
-                <td>Mô tả thôn</td>
+                <td>Tên</td>
                 <td>
-                    <form:input path="moTaThon"/>
+                    <form:input path="ten"/>
                 </td>
             </tr>
             <tr>
-                <td>Tỉnh</td>
+                <td>Mô tả</td>
                 <td>
-                    <form:select path="tinh" id="tinh">
-                        <form:option disabled="true" value="" label="Chọn Tỉnh/Thành phố"/>
-                        <form:options items="${dmTinhTP_List}" itemValue="ma" itemLabel="ten"/>
-                    </form:select>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Huyện</td>
-                <td>
-                    <form:select path="huyen" id="huyen">
-                        <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
-                        <form:options items="${dmQuanHuyen_List}" itemValue="ma" itemLabel="ten"/>
-                    </form:select>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Xã</td>
-                <td>
-                    <form:select path="xa" id="xa">
-                        <form:option disabled="true" value="" label="Chọn Quận/Huyện"/>
-                        <form:options items="${dmXaPhuong_List}" itemValue="ma" itemLabel="ten"/>
-                    </form:select>
+                    <form:input path="moTa"/>
                 </td>
             </tr>
             <tr>
-                <td>Trạng thái hoạt động</td>
+                <td>Mã Tỉnh</td>
                 <td>
-                    <form:radiobutton path="trangThai" value="1"/>
-                    <form:radiobutton path="trangThai" value="0"/><br>
+                    <form:input path="maTinh"/>
                 </td>
             </tr>
+            <tr>
+                <td>Mã Huyện</td>
+                <td>
+                    <form:input path="maHuyen"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Cấp</td>
+                <td>
+                    <form:input path="cap"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Trạng thái</td>
+                <td>
+                    <form:input path="trangThai"/>
+                </td>
+            </tr>
+<%--            <tr>--%>
+<%--                <td>Ngày tạo</td>--%>
+<%--                <td>--%>
+<%--                    <form:input path="ngayTao"/>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>người tạo Id</td>--%>
+<%--                <td>--%>
+<%--                    <form:input path="nguoiTaoId"/>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Ngày sửa</td>--%>
+<%--                <td>--%>
+<%--                    <form:input path="ngaySua"/>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Người sửa Id</td>--%>
+<%--                <td>--%>
+<%--                    <form:input path="nguoiSuaId"/>--%>
+<%--                </td>--%>
+<%--            </tr>--%>
             <tr>
                 <td></td>
                 <td>

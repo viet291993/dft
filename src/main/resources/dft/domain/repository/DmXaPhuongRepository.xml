@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dft.domain.repository.DmXaPhuongRepository">
-
     <resultMap id="DmXaPhuongResultMap" type="DmXaPhuong">
         <id property="id" column="ID"/>
         <result property="ma" column="MA"/>
@@ -22,7 +21,6 @@
 
     <select id="findAll" resultMap="DmXaPhuongResultMap">
     <![CDATA[
-
                 SELECT
                     ID,
                     MA,
@@ -91,7 +89,7 @@
         ]]>
     </select>
 
-    <delete id="deleteById" parameterType="DmXaPhuong">
+    <delete id="deleteById" parameterType="Integer">
         <![CDATA[
             DELETE FROM DM_XA_PHUONG
             WHERE
@@ -109,16 +107,53 @@
                 MA_TINH = #{maTinh},
                 MA_HUYEN = #{maHuyen},
                 CAP = #{cap},
-                TRANG_THAI = #{trangThai},
-                NGAY_TAO = #{ngayTao},
-                NGUOI_TAO_ID = #{nguoiTaoId},
-                NGAY_SUA = #{nguoiSua},
-                NGUOI_SUA_ID = #{nguoiSuaId}
+                TRANG_THAI = #{trangThai}
             WHERE
                 ID = #{id}
         ]]>
     </update>
 
 
+    <select id="countByCriteria"  resultType="_long">
+        <![CDATA[
+        SELECT
+            COUNT(*)
+        FROM
+            DM_XA_PHUONG
+        WHERE
+            MA LIKE '%' || #{criteria.ten} || '%' OR
+            TEN LIKE '%' || #{criteria.ten} || '%'
+    ]]>
+    </select>
+
+    <select id="findPageByCriteria"  resultMap="DmXaPhuongResultMap">
+        <![CDATA[
+        SELECT
+            ID,
+                    MA,
+                    TEN,
+                    MO_TA,
+                    MA_TINH,
+                    MA_HUYEN,
+                    CAP,
+                    TRANG_THAI,
+                    NGAY_TAO,
+                    NGUOI_TAO_ID,
+                    NGAY_SUA,
+                    NGUOI_SUA_ID
+        FROM
+            DM_XA_PHUONG
+        WHERE
+            MA LIKE '%' || #{criteria.ten} || '%' OR
+            TEN LIKE '%' || #{criteria.ten} || '%'
+        ORDER BY
+            ID
+        OFFSET
+             #{pageable.offset}
+        ROWS FETCH NEXT
+             #{pageable.pageSize}
+        ROWS ONLY
+    ]]>
+    </select>
 
 </mapper>

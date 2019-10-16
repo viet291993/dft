@@ -49,7 +49,7 @@ public class DmQuanHuyenController {
      * Hiển thị danh sách Quận huyện lên view
      */
     @GetMapping(value = "")
-    public String list(Model model, DmQuanHuyenCriteria criteria,@PageableDefault(size = 10) Pageable pageable) {
+    public String list(Model model, DmQuanHuyenCriteria criteria,@PageableDefault(size = 5) Pageable pageable) {
         if (!StringUtils.hasLength(criteria.getTen())) {
             criteria.setTen("");
         }
