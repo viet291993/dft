@@ -4,8 +4,14 @@ import dft.domain.dto.ttCaNhanDTO.TtCaNhanDTO;
 import dft.domain.model.TtCaNhan;
 import dft.domain.service.TtCaNhanService.TtCaNhanService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -146,7 +152,7 @@ public class FunctionTtCaNhanController {
     //</editor-fold>
 
     // load lại các combo box, bảng trên trang
-    public static void loadLaiTrang(Model model, boolean xoaTrangForm, TtCaNhanService ttCaNhanService, boolean showDanhSach, TtCaNhanDTO ttCaNhanDTO) {
+    public static void loadLaiTrang(Model model, boolean xoaTrangForm, TtCaNhanService ttCaNhanService, boolean showDanhSach, TtCaNhanDTO ttCaNhanDTO, Pageable pageable) {
         // tạo 1 cái model attribute chứa ttCaNhan rỗng nếu không có lỗi
         if (xoaTrangForm) {
             model.addAttribute("ttCaNhanDTO", new TtCaNhanDTO());
@@ -176,9 +182,33 @@ public class FunctionTtCaNhanController {
         }
 
         if (showDanhSach) {
-            // tạo 1 cái request attribute chứa danh sách tt cá nhân để đưa về trang ttCaNhan.jsp
-            System.out.println((long) ttCaNhanDTO.getTtThonXom().getId() + "alo alo");
-            model.addAttribute("lstTtCaNhanDTOs", chuyenEntityThanhDTO(ttCaNhanService.findAllTtCaNhan((long) ttCaNhanDTO.getTtThonXom().getId(), 0)));
+            phanTrang(ttCaNhanService, ttCaNhanDTO, model, pageable);
         }
     }
+
+    //<editor-fold defaultstate="collapsed" desc="phân trang">
+    // phân trang
+    private static void phanTrang(TtCaNhanService ttCaNhanService, TtCaNhanDTO ttCaNhanDTO, Model model, Pageable pageable) {
+        // lấy ra tổng số cá nhân của tỉnh, huyện, xã, phường, thôn xóm đc chọn
+        int tongSoDong = ttCaNhanService.tongSoDong((long) ttCaNhanDTO.getTtThonXom().getId());
+
+        // lấy ra 50 cá nhân thuộc trang được trọn, mặc định là trang 0
+        List<TtCaNhanDTO> lstTtCaNhanDTOs = chuyenEntityThanhDTO(ttCaNhanService.findAllTtCaNhan((long) ttCaNhanDTO.getTtThonXom().getId(), pageable.getOffset()));
+
+        // đưa 50 cá nhân query đc, tổng số dòng và pageable(trang mình chọn, ...) vào 1 cái Page để thẻ t:pagination tính toán số tổng số trang
+        Page<TtCaNhanDTO> page = new PageImpl<>(lstTtCaNhanDTOs, pageable, tongSoDong);
+
+        // đưa page vào thẻ t:pagination
+        model.addAttribute("page", page);
+    }
+
+    // tạo pageable chứa thông tin của trang được chọn
+    public static Pageable pageable(Pageable pageable, int trangDuocChon) {
+        for (int i = 0; i < trangDuocChon; i++) {
+            pageable = pageable.next();
+        }
+
+        return pageable;
+    }
+    //</editor-fold>
 }

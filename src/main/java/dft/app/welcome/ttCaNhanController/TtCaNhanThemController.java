@@ -22,19 +22,19 @@ public class TtCaNhanThemController {
     public String luu(@Validated @ModelAttribute("ttCaNhanDTO") TtCaNhanDTO ttCaNhanDTO, BindingResult br, Model model) {
         TtCaNhan ttCaNhan = FunctionTtCaNhanController.kiemTra(ttCaNhanDTO, br, model, ttCaNhanService, false);
         if (ttCaNhan == null) {
-            FunctionTtCaNhanController.loadLaiTrang(model, false, ttCaNhanService, false, ttCaNhanDTO);
+            FunctionTtCaNhanController.loadLaiTrang(model, false, ttCaNhanService, false, ttCaNhanDTO, null);
             return "ttCaNhan/ttCaNhanThem";
         }
 
         // thêm 1 cá nhân vào csdl và load lại các combobox, bảng
         ttCaNhanService.insert(ttCaNhan);
-        FunctionTtCaNhanController.loadLaiTrang(model, true, ttCaNhanService, false, new TtCaNhanDTO());
+        FunctionTtCaNhanController.loadLaiTrang(model, true, ttCaNhanService, false, new TtCaNhanDTO(), null);
         return "ttCaNhan/ttCaNhanThem";
     }
 
     @PostMapping(value = "/", params = "btnHuyThem")
     public String huy(Model model) {
-        FunctionTtCaNhanController.loadLaiTrang(model, true, ttCaNhanService, false, new TtCaNhanDTO());
+        FunctionTtCaNhanController.loadLaiTrang(model, true, ttCaNhanService, false, new TtCaNhanDTO(), null);
         return "ttCaNhan/ttCaNhan";
     }
 }
