@@ -46,6 +46,7 @@
                 </c:if>
 
                 <br>
+                <input type="hidden" value="${page.pageNumber}" name="trangDangChon">
                 <button name="btnCapNhat">Cập nhật</button>
             </form:form>
 
@@ -55,6 +56,8 @@
 <%--                <form:hidden path="ttHuyen"/> không chơi trò này đc, nó tự gắn cái huyện là null luôn--%>
                 <form:hidden path="ttXa.id"/>
                 <form:hidden path="ttThonXom.id"/>
+                <input type="hidden" value="${page.pageNumber}" name="trangDangChon">
+
                 <button name="btnHuySua">Hủy</button>
             </form:form>
         </div>

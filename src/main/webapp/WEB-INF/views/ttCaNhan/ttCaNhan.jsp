@@ -28,6 +28,22 @@
             <c:if test="${ttCaNhanDTO.ttXa.id != null}">
                 <form:errors path="ttThonXom" cssClass="errors_message"/>
             </c:if>
+
+            <br>
+            <t:pagination page="${page}" disabledHref="#" pathTmpl="${pageContext.request.contextPath}/ttCaNhan/"
+                          criteriaQuery="&btnHienThi=&ttTinh.id=${ttCaNhanDTO.ttTinh.id}&ttHuyen.id=${ttCaNhanDTO.ttHuyen.id}&ttXa.id=${ttCaNhanDTO.ttXa.id}&ttThonXom.id=${ttCaNhanDTO.ttThonXom.id}"
+                          maxDisplayCount="10"
+                          enableLinkOfCurrentPage="true"
+                          activeClass="phanTrangActive" outerElementClass="phanTrang"
+            />
+
+            <c:if test="${page != null}">
+                <br>
+                <span>Tổng số kết quả: ${page.totalElements}</span>
+                <br>
+                <span>Tổng số trang: ${page.totalPages}</span>
+                <%--            <span>${page.number}</span> // (trang được chọn) - 1--%>
+            </c:if>
         </form:form>
     </div>
 
@@ -42,7 +58,7 @@
                 <th>Địa chỉ</th>
             </tr>
 
-            <c:forEach items="${lstTtCaNhanDTOs}" var="t" varStatus="i">
+            <c:forEach items="${page.content}" var="t" varStatus="i">
                 <tr>
                     <td>${i.index+1}</td>
                     <td>${t.hoTen}</td>
@@ -57,6 +73,7 @@
                             <form:hidden path="ttHuyen.id"/>
                             <form:hidden path="ttXa.id"/>
                             <form:hidden path="ttThonXom.id"/>
+                            <input type="hidden" value="${page.number}" name="trangDangChon">
 
                             <button name="btnSua">Sửa</button> |
                             <button name="btnXoa">Xóa</button>

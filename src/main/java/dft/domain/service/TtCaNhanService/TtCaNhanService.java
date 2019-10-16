@@ -22,4 +22,6 @@ public interface TtCaNhanService {
     void insert(TtCaNhan ttCaNhan);
     void update(TtCaNhan ttCaNhan);
     void delete(Long id);
+
+    int tongSoDong(Long id);
 }

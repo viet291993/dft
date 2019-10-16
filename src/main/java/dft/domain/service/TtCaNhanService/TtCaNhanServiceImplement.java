@@ -91,4 +91,9 @@ public class TtCaNhanServiceImplement implements TtCaNhanService {
         ttCaNhanRepository.delete(id);
     }
     //</editor-fold>
+
+    @Override
+    public int tongSoDong(Long id) {
+        return ttCaNhanRepository.tongSoDong(id);
+    }
 }

@@ -20,8 +20,7 @@ public class AjaxController {
     TtCaNhanService ttCaNhanService;
 
     @GetMapping(value = "/ajax/quanHuyens")
-    public @ResponseBody
-    List<DmQuanHuyen> quanHuyens (@RequestParam("idTinh") Long idTinh) {
+    public @ResponseBody List<DmQuanHuyen> quanHuyens (@RequestParam("idTinh") Long idTinh) {
         // lấy mã tỉnh vì tỉnh 1-n huyện và nối vs nhau bằng mã chứ không phải id
         String maTinh = ttCaNhanService.findMaTinh(idTinh);
         return ttCaNhanService.findAllQuanHuyen(maTinh);

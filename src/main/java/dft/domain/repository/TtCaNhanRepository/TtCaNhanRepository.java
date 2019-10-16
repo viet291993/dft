@@ -21,7 +21,7 @@ public interface TtCaNhanRepository {
             "    from TT_CA_NHAN\n" +
             "    where TT_THON_XOM_ID = #{param1}) T1\n" +
             "where\n" +
-            "      T1.STT > #{param2}*10 and\n" +
+            "      T1.STT > #{param2} and\n" +
             "      ROWNUM <= 10")
     @Results(value = {
             @Result(property = "id", column = "id"),
@@ -141,6 +141,10 @@ public interface TtCaNhanRepository {
     // nếu không có tham số thì là void
     public TtCaNhan findOneById(Long id);
     //</editor-fold>
+
+    // tổng số dòng của trang
+    @Select("select count(*) from tt_ca_nhan where tt_thon_xom_id = #{id}")
+    public int tongSoDong(Long id);
 
     // tên tham số #{} đặt thế nào cũng đc
     // nếu tham số truyền vào là 1 đối tương thì tham số #{} phải trùng với tên thuộc tính của đối tượng đc truyền vào
