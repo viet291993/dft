@@ -13,6 +13,8 @@ public class DmTinhTP implements Serializable {
     private String ma;
     // Tên
     private String ten;
+
+    private String moTa;
     // Cấp
     private String cap;
     // Trạng thái
@@ -61,12 +63,21 @@ public class DmTinhTP implements Serializable {
         this.trangThai = trangThai;
     }
 
+    public String getMoTa() {
+        return moTa;
+    }
+
+    public void setMoTa(String moTa) {
+        this.moTa = moTa;
+    }
+
     @Override
     public String toString() {
         return "DmTinhTP{" +
                 "id=" + id +
                 ", ma='" + ma + '\'' +
                 ", ten='" + ten + '\'' +
+                ", moTa='" + moTa + '\'' +
                 ", cap='" + cap + '\'' +
                 ", trangThai=" + trangThai +
                 '}';

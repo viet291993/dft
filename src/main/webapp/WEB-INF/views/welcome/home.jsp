@@ -17,7 +17,7 @@
 
 <nav class="navbar" style="background: #e6e2eb">
     <a class="navbar-brand" href="#">Trang chủ</a>
-    <a class="navbar-brand" href="#">Tinh</a>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/tinhTP">Tinh</a>
     <a class="navbar-brand" href="#">Quận huyện</a>
     <a class="navbar-brand" href="${pageContext.request.contextPath}/dmxaphuong">Xã phường</a>
     <a class="navbar-brand" href="${pageContext.request.contextPath}/dm-thonxom/list">Thôn xóm</a>

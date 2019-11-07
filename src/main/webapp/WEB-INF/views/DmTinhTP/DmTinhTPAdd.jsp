@@ -8,9 +8,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Thêm Tỉnh TP</title>
 </head>
 <body>
-$END$
+<h2>Thêm Tỉnh TP</h2>
+<form:form  action="${pageContext.request.contextPath}/tinhTP/them" method="post" modelAttribute="tinh">
+    <form:label path="ma">Mã</form:label>
+    <form:input path="ma"/><br>
+    <form:label path="ten">Tên</form:label>
+    <form:input path="ten"/><br>
+    <form:label path="moTa">Mô tả</form:label>
+    <form:input path="moTa"/><br>
+    <form:label path="cap">Cấp</form:label>
+    <form:input path="cap"/><br>
+    <form:label path="trangThai">Trạng thái</form:label>
+    <form:radiobutton path="trangThai" value="1"/>
+    <form:radiobutton path="trangThai" value="0"/><br>
+    <form:button>Thêm mới</form:button>
+</form:form>
 </body>
 </html>

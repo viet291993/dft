@@ -47,6 +47,7 @@
     ]]>
     </select>
 
+
     <insert id="create" parameterType="dmQuanHuyen">
     <![CDATA[
         INSERT INTO DM_QUAN_HUYEN

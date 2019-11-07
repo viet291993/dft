@@ -60,9 +60,9 @@ public class DmTinhTPServiceImpl implements DmTinhTPService {
      * @return boolean <true: Sửa thành công , false: Sửa  thất bại >
      */
     @Override
-    public boolean update(DmTinhTP dmTinhTP) {
+    public boolean update(DmTinhTP dmTinhTP, String ma) {
         try {
-            dmTinhTPRepository.update(dmTinhTP);
+            dmTinhTPRepository.update(dmTinhTP, ma);
             return true;
         } catch (Exception e) {
             return false;

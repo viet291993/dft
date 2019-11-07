@@ -1,7 +1,6 @@
 package dft.domain.service;
 
-import dft.domain.model.DM_THON_XOM;
-import org.springframework.beans.factory.annotation.Autowired;
+import dft.domain.model.DmThonXom;
 import dft.domain.repository.DmThonXomRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,34 +8,36 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.List;
 
-@Transactional
 @Service
-public class dmThonXomServiceImpl implements dmThonXomService {
+@Transactional
+public class DmThonXomServiceImpl implements DmThonXomService {
     @Inject
-    DmThonXomRepository dmThonXomRepository;
+    private DmThonXomRepository dmThonXomRepository;
 
     @Override
-    public List<DM_THON_XOM> findAllThonXom() {
-        return dmThonXomRepository.findAllThonXom();
+    public List<DmThonXom> findAll() {
+        return dmThonXomRepository.findAll();
     }
 
     @Override
-    public DM_THON_XOM findOneTonXom() {
-        return dmThonXomRepository.findOneTonXom();
+    public DmThonXom findById(int id) {
+        return dmThonXomRepository.findById(id);
     }
 
     @Override
-    public void createThonXom(DM_THON_XOM dm_thon_xom) {
-        dmThonXomRepository.createThonXom(dm_thon_xom);
+    public void create(DmThonXom dmThonXom) {
+        dmThonXomRepository.create(dmThonXom);
     }
 
     @Override
-    public void updateThonXom(DM_THON_XOM dm_thon_xom) {
-        dmThonXomRepository.updateThonXom(dm_thon_xom);
+    public void update(DmThonXom dmThonXom) {
+        dmThonXomRepository.update(dmThonXom);
     }
 
+
     @Override
-    public void deleteThonXom(long id) {
-        dmThonXomRepository.deleteThonXom(id);
+    public void deleteById(int id) {
+        dmThonXomRepository.deleteById(id);
     }
+
 }

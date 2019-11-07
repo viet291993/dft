@@ -14,7 +14,7 @@ public interface DmTinhTPRepository {
 
     void create(DmTinhTP dmTinhTP);
 
-    void update(DmTinhTP dmTinhTP);
+    void update(DmTinhTP dmTinhTP, String maCu);
 
     void deleteById(int id);
 }

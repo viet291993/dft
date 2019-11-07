@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="dmTinhTP_Select">
-            ID T_id,MA T_ma,TEN T_ten,CAP T_cap, TRANG_THAI T_trangThai
+            ID T_id,MA T_ma,TEN T_ten,MO_TA T_moTa, CAP T_cap, TRANG_THAI T_trangThai
      </sql>
 
     <select id="findOne" parameterType="integer" resultMap="dmTinhTP">
@@ -36,6 +36,8 @@
         <![CDATA[
         FROM
             DM_TINH_TP
+        where
+            rownum < 10
     ]]>
     </select>
 
@@ -58,17 +60,39 @@
     ]]>
     </insert>
 
-    <update id="update" parameterType="dmTinhTP">
+    <update id="update" parameterType="map">
     <![CDATA[
         UPDATE
             DM_TINH_TP
         SET
           MA =  #{dmTinhTPMa},
           TEN =  #{dmTinhTPTen},
-          CAP  #{dmTinhTPCap},
-          TRANG_THAI  #{dmTinhTPTrangThai}
+          CAP = #{dmTinhTPCap},
+          TRANG_THAI = #{dmTinhTPTrangThai}
         WHERE
-            ID = #{dmTinhTPId}
+            ID = #{dmTinhTPId};
+
+        update
+            DM_QUAN_HUYEN
+        set
+            MA_TINH = #{ma}
+        where
+            MA_TINH = #{maCu};
+
+        update
+            DM_XA_PHUONG
+        set
+            MA_TINH = #{ma}
+        where
+            MA_TINH = #{maCu};
+
+        update
+            DM_THON_XOM
+        set
+            MA_TINH = #{ma}
+        where
+            MA_TINH = #{maCu};
+
     ]]>
     </update>
 

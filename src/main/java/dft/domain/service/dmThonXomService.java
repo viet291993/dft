@@ -1,13 +1,17 @@
 package dft.domain.service;
 
-import dft.domain.model.DM_THON_XOM;
+import dft.domain.model.DmThonXom;
 
 import java.util.List;
 
-public interface dmThonXomService {
-    public List<DM_THON_XOM> findAllThonXom();
-    public DM_THON_XOM findOneTonXom();
-    public void createThonXom(DM_THON_XOM dm_thon_xom);
-    public void updateThonXom(DM_THON_XOM dm_thon_xom);
-    public void deleteThonXom(long id);
+public interface DmThonXomService {
+    List<DmThonXom> findAll();
+
+    DmThonXom findById(int id);
+
+    void create(DmThonXom dmThonXom);
+
+    void update(DmThonXom dmThonXom);
+
+    void deleteById(int id);
 }

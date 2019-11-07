@@ -1,5 +1,6 @@
 package dft.domain.service;
 
+import dft.domain.model.DmQuanHuyen;
 import dft.domain.model.DmTinhTP;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface DmTinhTPService {
 
     boolean create(DmTinhTP mmTinhTP);
 
-    boolean update(DmTinhTP mmTinhTP);
+    boolean update(DmTinhTP mmTinhTP, String ma);
 
     boolean deleteById(int id);
 }
